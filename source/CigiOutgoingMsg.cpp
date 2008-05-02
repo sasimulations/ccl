@@ -87,6 +87,7 @@
  */
 
 #include <stdlib.h>
+#include <string>
 
 #define _EXPORT_CCL_
 
@@ -1524,4 +1525,8 @@ void CigiOutgoingMsg::SetOutgoingIGV3Tbls(void)
 
 }
 
-
+std::string CigiOutgoingMsg::GetBufferString(void) {
+	Cigi_uint8 *buffer = this->GetBuffer();
+	int size = this->GetMsgLength();
+	return std::string(buffer,buffer+size);
+}

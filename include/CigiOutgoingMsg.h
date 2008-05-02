@@ -427,15 +427,6 @@ public:
    Cigi_uint8 * GetBuffer(void);
 
    //=========================================================
-   //! Simple declaration of a Cigi_uint8 pointer and size for
-   //!   defining a buffer.  This is to aid in scripting converstion
-   //!   to an appropriate string representation.
-   struct buffer_size {
-     Cigi_uint8 *buffer;
-     int size;
-   };
-
-   //=========================================================
    //! Gets the length of the message in bytes. 
    //!
    //! \return The length of the message in bytes.
@@ -443,15 +434,10 @@ public:
    int GetMsgLength(void);
 
    //=========================================================
-   //! Gets a pointer and size to the beginning of the buffer.
-   //! \return Buffer - A buffer_size struct.
+   //! Gets a std::string of the buffer.
+   //! \return Buffer - A std::string copy of the buffer.
    //!
-   struct buffer_size GetBufferAndSize(void) {
-     struct buffer_size bs;
-     bs.buffer = this->GetBuffer();
-     bs.size = this->GetMsgLength();
-     return bs; // People tell me I return bs all the time.
-   }
+   std::string GetBufferString(void);
 
    //=========================================================
    //! Unlocks the message after sending
