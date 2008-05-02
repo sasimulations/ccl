@@ -1,6 +1,4 @@
 
-std::vector<MessageBuffer*> MessageBuffers;
-
 class MessageBuffer
 {
 public:
@@ -42,4 +40,6 @@ public:
    //!
    bool Valid;
 };
+
+std::vector<MessageBuffer*> MessageBuffers;
 
