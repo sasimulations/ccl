@@ -280,8 +280,6 @@ void CigiOutgoingMsg::ChangeOutgoingCigiVersion(CigiVersionID &Version)
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 void CigiOutgoingMsg::SetMostMatureReceivedCigiVersion(CigiVersionID &Version)
 {
-   bool valid = false;
-
    if(Version.IsKnownCigiVersion())
    {
       if(Version.GetCombinedCigiVersion() >
@@ -666,6 +664,8 @@ CigiOutgoingMsg & CigiOutgoingMsg::operator <<(CigiBasePacket &refBasePacket)
       case CigiProcessType::ProcVarSize:
          pVSz = (CigiBaseVariableSizePckt *)&refBasePacket;
          operator<<(*pVSz);
+         break;
+      default:
          break;
       }
    }

@@ -93,9 +93,9 @@
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiIncomingMsg::CigiIncomingMsg()
 : Iteration(false)
-, Swap(false)
 , CrntPacket(NULL)
 , ReadBufferPos(0)
+, Swap(false)
 , DefaultPckt(NULL)
 {
    DefaultPckt = new CigiDefaultPacket;
@@ -274,6 +274,8 @@ int CigiIncomingMsg::ProcessIncomingMsg(Cigi_uint8 *Buff, int Size)
 
             ProcessPacket(CnvtDta.CnvtPacketID,tPckt);
          }
+         break;
+      default:
          break;
       }
 
@@ -1295,7 +1297,6 @@ void CigiIncomingMsg::SetIncomingHostV3Tbls(void)
 void CigiIncomingMsg::SetReaderVersion(CigiVersionID &Version)
 {
 
-   bool valid = false;
    bool ChangeTbl = false;
 
    if((Version.CigiMajorVersion != ReaderVersion.CigiMajorVersion) ||
