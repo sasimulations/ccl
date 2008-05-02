@@ -31,9 +31,9 @@ class CigiHost
     @own.SetEntityType(0)
     @own.SetEntityState(Cigi::CigiBaseEntityCtrl::Active)
 
-    self.lat = 35.5
+    self.lat = 35.0
     self.lon = -119
-    self.alt = 1000
+    self.alt = 0
     self.yaw = 0
     self.pitch = 0
     self.roll = 0
@@ -61,7 +61,7 @@ class CigiHost
       out << @own
 
       out.LockMsg
-      buf = out.GetBuffer
+      buf = out.GetBufferString
 
       indata = @socket.recv 65536
       @socket.send buf,0,@sendhost,@sendport
