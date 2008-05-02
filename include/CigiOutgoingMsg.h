@@ -120,6 +120,16 @@ public:
    CigiOutgoingMsg & operator <<(CigiBaseIGCtrl &refPacket);
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A reference to an IG Control packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   inline CigiOutgoingMsg & pack(CigiBaseIGCtrl &refPacket)
+   {
+     return (*this) << refPacket;
+   }
+
+   //=========================================================
    //! Packs the buffer with the specifed Start Of Frame packet.  
    //! \param refPacket - A reference to an Start Of Frame packet.
    //!
@@ -127,11 +137,31 @@ public:
    CigiOutgoingMsg & operator <<(CigiBaseSOF &refPacket);
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A reference to an Start Of Frame packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseSOF &refPacket)
+   {
+     return (*this) << refPacket;
+   }
+
+   //=========================================================
    //! Packs the buffer with the specifed Entity Control packet.  
    //! \param refPacket - A reference to an Entity Control packet.
    //!
    //! \return This returns a reference to this CigiOutgoingMsg object
    CigiOutgoingMsg & operator <<(CigiBaseEntityCtrl &refPacket);
+
+   //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A reference to an Entity Control packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseEntityCtrl &refPacket)
+   {
+     return (*this) << refPacket;
+   }
 
    //=========================================================
    //! Packs the buffer with the specifed packet.  
@@ -142,11 +172,32 @@ public:
    CigiOutgoingMsg & operator <<(CigiBaseEnvCtrl &refPacket);
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A reference to an Enviroment type
+   //!    Control packet.  This includes Celestial and Atmosphere Ctrl
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseEnvCtrl &refPacket)
+   {
+     return (*this) << refPacket;
+   }
+
+   //===================<======================================
    //! Packs the buffer with the specifed packet.  
    //! \param refPacket - A reference to a variable size packet
    //!
    //! \return This returns a reference to this CigiOutgoingMsg object
    CigiOutgoingMsg & operator <<(CigiBaseVariableSizePckt &refPacket);
+
+   //===================<======================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A reference to a variable size packet
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseVariableSizePckt &refPacket)
+   {
+     return (*this) << refPacket;
+   }
 
    //=========================================================
    //! Packs the buffer with the pointer to the specifed packet.  
@@ -154,6 +205,16 @@ public:
    //!
    //! \return This returns a reference to this CigiOutgoingMsg object
    CigiOutgoingMsg & operator <<(CigiBasePacket &refBasePacket);
+
+   //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refBasePacket - A reference to a base packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBasePacket &refBasePacket)
+   {
+     return (*this) << refBasePacket;
+   }
 
 
    //==> Buffer Packing Operators with Pointers
@@ -169,6 +230,16 @@ public:
    }
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A pointer to an IG Control packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseIGCtrl *refPacket)
+   {
+     return this->pack(*refPacket);
+   }
+
+   //=========================================================
    //! Packs the buffer with the pointer to the specifed Start Of Frame packet.  
    //! \param refPacket - A pointer to an Start Of Frame packet.
    //!
@@ -179,6 +250,16 @@ public:
    }
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A pointer to an Start Of Frame packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseSOF *refPacket)
+   {
+     return this->pack(*refPacket);
+   }
+
+   //=========================================================
    //! Packs the buffer with the pointer to the specifed Entity Control packet.  
    //! \param refPacket - A pointer to an Entity Control packet.
    //!
@@ -186,6 +267,16 @@ public:
    CigiOutgoingMsg & operator <<(CigiBaseEntityCtrl *refPacket)
    {
       return(operator<<(*refPacket));
+   }
+
+   //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A pointer to an Entity Control packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseEntityCtrl *refPacket)
+   {
+     return this->pack(*refPacket);
    }
 
    //=========================================================
@@ -200,6 +291,17 @@ public:
    }
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A pointer to an Enviroment type
+   //!    Control packet.  This includes Celestial and Atmosphere Ctrl
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseEnvCtrl *refPacket)
+   {
+     return this->pack(*refPacket);
+   }
+
+   //=========================================================
    //! Packs the buffer with the specifed packet.  
    //! \param refPacket - A pointer to a variable size packet
    //!
@@ -210,6 +312,16 @@ public:
    }
 
    //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refPacket - A pointer to a variable size packet
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBaseVariableSizePckt *refPacket)
+   {
+     return this->pack(*refPacket);
+   }
+
+   //=========================================================
    //! Packs the buffer with the pointer to the specifed packet.  
    //! \param refBasePacket - A pointer to a base packet.
    //!
@@ -217,6 +329,16 @@ public:
    CigiOutgoingMsg & operator <<(CigiBasePacket *refBasePacket)
    {
       return(operator<<(*refBasePacket));
+   }
+
+   //=========================================================
+   //! Non operator-overloaded pack method for scripting.
+   //! \param refBasePacket - A pointer to a base packet.
+   //!
+   //! \return This returns a reference to this CigiOutgoingMsg object
+   CigiOutgoingMsg & pack(CigiBasePacket *refBasePacket)
+   {
+     return this->pack(*refBasePacket);
    }
 
 
