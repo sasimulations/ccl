@@ -126,6 +126,38 @@
 #ifdef WIN32
 #include <Windows.h>
 #include <conio.h>
+#else
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+static int _kbhit(void)
+{
+	struct termios oldt, newt;
+	int ch;
+	int oldf;
+
+	tcgetattr(STDIN_FILENO, &oldt);
+	newt = oldt;
+	newt.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+	ch = getchar();
+
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	fcntl(STDIN_FILENO, F_SETFL, oldf);
+
+	if(ch != EOF)
+	{
+		ungetc(ch, stdin);
+		return 1;
+	}
+
+	return 0;
+}
 #endif
 
 #ifdef WIN32
@@ -250,7 +282,7 @@ void waitUntilBeginningOfFrame(void);
 float timevaldiff( struct timeval *t1, struct timeval *t2 );
 #endif
 
-
+#include <chrono>
 
 // ================================================
 // Main
@@ -270,6 +302,8 @@ int main(int argc, char* argv[])
 
    Omsg.BeginMsg();
 
+   //std::chrono::high_resolution_clock
+#ifdef WIN32
 LARGE_INTEGER timerFreq_;
 LARGE_INTEGER counterAtStart_, counterAtEnd_;
 BOOL perfTimerFlag = QueryPerformanceFrequency(&timerFreq_);
@@ -277,9 +311,21 @@ BOOL perfTimerFlag = QueryPerformanceFrequency(&timerFreq_);
 		QueryPerformanceCounter( &counterAtStart_ );  
 		QueryPerformanceCounter( &counterAtEnd_ );  
 	}
-
-   while( !_kbhit() )
+#endif
+   bool running = true;
+   while(running)
    {
+#if WIN32
+	   running = !_kbhit();
+#else
+	   running = !_kbhit();
+	   /*initscr();
+		cbreak();
+		noecho();
+		scrollok(stdscr, TRUE);
+		nodelay(stdscr, TRUE);*/
+		//running = (getch() != 'q');
+#endif
  //     system("cls");
       //cout << "================================\n";
       //cout << "Frame: " << Omsg.GetFrameCnt() << endl;
@@ -298,8 +344,14 @@ BOOL perfTimerFlag = QueryPerformanceFrequency(&timerFreq_);
 //      cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n";
 	static unsigned long frameCounter = 0;
 	 CSOF.SetFrameCntr( frameCounter++ );
-	 QueryPerformanceCounter( &counterAtEnd_ );  
-	 CSOF.SetTimeStamp( static_cast<unsigned long>( (counterAtEnd_.QuadPart - counterAtStart_.QuadPart) * 1000 / timerFreq_.QuadPart ) );
+#ifdef WIN32
+	 QueryPerformanceCounter(&counterAtEnd_);
+	 unsigned long eofTimeS = static_cast<unsigned long>((counterAtEnd_.QuadPart - counterAtStart_.QuadPart) * 1000 / timerFreq_.QuadPart);
+	 counterAtStart_ = counterAtEnd_;
+#else
+	 unsigned long eofTimeS = 0;
+#endif
+	 CSOF.SetTimeStamp(eofTimeS);
      CSOF.SetTimeStampValid( true );
       // load SOF Control
 		Omsg << CSOF;
@@ -322,7 +374,6 @@ BOOL perfTimerFlag = QueryPerformanceFrequency(&timerFreq_);
 //		Omsg << IGMsg;
  
       // wait until start of frame time
-	 counterAtStart_ = counterAtEnd_;
       waitUntilBeginningOfFrame();
 
 
