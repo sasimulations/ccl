@@ -33,6 +33,10 @@
  *  
  *  07/29/2015 Chas Whitley                      Version 4.0.0
  *  
+ *  04/14/2021 Paul Slade			 Version 4.0.6b
+ *  Fixed constructor/copy constructor to properly
+ *  manage FontId and MaxcharCnt
+ *  
  * </pre>
  *  Author: The Boeing Company
  *
@@ -76,8 +80,10 @@ CigiBaseSymbolTextDef::CigiBaseSymbolTextDef(const CigiBaseSymbolTextDef &BaseIn
    Alignment = BaseIn.Alignment;
    Orientation = BaseIn.Orientation;
    FontSize = BaseIn.FontSize;
+   FontID = BaseIn.FontID;
    VariableDataSize = BaseIn.VariableDataSize;
    Text = BaseIn.Text;
+   MaxCharCnt = BaseIn.MaxCharCnt;
 }
 
 // ================================================
@@ -89,8 +95,10 @@ CigiBaseSymbolTextDef & CigiBaseSymbolTextDef::operator=(const CigiBaseSymbolTex
    Alignment = BaseIn.Alignment;
    Orientation = BaseIn.Orientation;
    FontSize = BaseIn.FontSize;
+   FontID = BaseIn.FontID;
    VariableDataSize = BaseIn.VariableDataSize;
    Text = BaseIn.Text;
+   MaxCharCnt = BaseIn.MaxCharCnt;
 
    return(*this);
 }

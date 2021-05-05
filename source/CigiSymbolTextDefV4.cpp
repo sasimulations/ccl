@@ -38,6 +38,11 @@
  *  Initial Release for CIGI 4.0 compatibility.
  *  Based on CigiSymbolTextDefV3_3.cpp
  *  
+ *  04/14/2021 Paul Slade                        Version 4.0.0 build 6b
+ *  Initial Release for CIGI 4.0 compatibility.
+ *  Added MaxCharCnt = 65528 to the constuctor to
+ *  properly initialize MaxCharCnt
+ *  
  * </pre>
  *  Author: The Boeing Company
  *
@@ -101,6 +106,7 @@ CigiSymbolTextDefV4::CigiSymbolTextDefV4(const std::string &TextIn)
    Orientation = LeftToRight;
    FontID = 0;
    FontSize = 10.0;
+   MaxCharCnt = 65528;
 
    SetText(TextIn,false);
 }
