@@ -34,7 +34,9 @@ SET(VERSION 4.0.2)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CCL_Functions.cmake)
 option(CCL_EXAMPLES_ENABLE "Build the CCL examples" OFF)
-option(CCL_TESTING_ENABLE "Build the CCL tests" OFF)
+option(CCL_EXCEPTION_HANDLING "Compile with exception handling enabled" ON)
+option(CCL_EVENT_PROCESSING "Compile with event processing included" ON)
+option(CCL_SIGNAL_PROCESSING "Compile with signal processing included" ON)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4.7)
 SET(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS 1)
@@ -84,6 +86,18 @@ ENDIF()
 
 IF(MSVC80)
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
+ENDIF()
+
+IF(NOT CCL_EXCEPTION_HANDLING)
+    ADD_DEFINITIONS(-DCIGI_NO_EXCEPT)
+ENDIF()
+
+IF(NOT CCL_EVENT_PROCESSING)
+    ADD_DEFINITIONS(-DCIGI_NO_EVENT_PROCESSING)
+ENDIF()
+
+IF(NOT CCL_SIGNAL_PROCESSING)
+    ADD_DEFINITIONS(-DCIGI_NO_SIGNAL_PROCESSING)
 ENDIF()
 
 #==========================================================
@@ -178,8 +192,4 @@ ENDIF()
 
 if(CCL_EXAMPLES_ENABLE)
 add_subdirectory(Examples)
-endif()
-
-if(CCL_TESTING_ENABLE)
-add_subdirectory(Testing)
 endif()
