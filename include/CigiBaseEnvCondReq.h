@@ -69,9 +69,13 @@
 #define CIGI_ENV_COND_REQ_PACKET_ID_V4 0x1b
 #define CIGI_ENV_COND_REQ_PACKET_SIZE_V4 32
 
+#define CIGI_ENV_COND_REQ_PACKET_ID_V4_1 0x1b
+#define CIGI_ENV_COND_REQ_PACKET_SIZE_V4_1 32
+
 
 class CigiEnvCondReqV3;
 class CigiEnvCondReqV4;
+class CigiEnvCondReqV4_1;
 
 
 class CIGI_SPEC CigiBaseEnvCondReq : public CigiBasePacket
@@ -79,6 +83,7 @@ class CIGI_SPEC CigiBaseEnvCondReq : public CigiBasePacket
 
 friend class CigiEnvCondReqV3;
 friend class CigiEnvCondReqV4;
+friend class CigiEnvCondReqV4_1;
 
 public:
 

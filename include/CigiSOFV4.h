@@ -225,7 +225,7 @@ public:
    //! IG Condition - Overframing
    //! \return IG Condition - Overframing
    //!
-   Cigi_uint8 GetOverframingCondidtion(void) const { return(OverframingCondition); }
+   Cigi_uint8 GetOverframingCondidtion(void) const { return(OverframingCondition ? 1 : 0); }
 
    //=========================================================
    //! Sets the IG Overframing Condition
@@ -237,7 +237,7 @@ public:
    //!
    int SetOverframingCondidtion(const Cigi_uint8 OverframingIn, bool bndchk=true)
    {
-      OverframingCondition = OverframingIn;
+      OverframingCondition = OverframingIn ? true : false;
 
       return(CIGI_SUCCESS);
    }
@@ -248,7 +248,7 @@ public:
    //! IG Condition - Paging
    //! \return IG Condition - Paging
    //!
-   Cigi_uint8 GetPagingCondition(void) const { return(PagingCondition); }
+   Cigi_uint8 GetPagingCondition(void) const { return(PagingCondition ? 1 : 0); }
 
    //=========================================================
    //! Sets the IG Paging Condition
@@ -260,7 +260,7 @@ public:
    //!
    int SetPagingCondition(const Cigi_uint8 PagingConditionIn, bool bndchk=true)
    {
-      PagingCondition = PagingConditionIn;
+      PagingCondition = PagingConditionIn ? true : false;
 
       return(CIGI_SUCCESS);
    }
@@ -271,7 +271,7 @@ public:
    //! IG Condition - Excessive Variable Length Data
    //! \return IG Condition - Excessive Variable Length Data
    //!
-   Cigi_uint8 GetExcessiveDataCondition(void) const { return(ExcessVarLenDataCondition); }
+   Cigi_uint8 GetExcessiveDataCondition(void) const { return(ExcessVarLenDataCondition ? 1 : 0); }
 
    //=========================================================
    //! Sets the IG Excessive Variable Length Data Condition
@@ -283,7 +283,7 @@ public:
    //!
    int SetExcessiveDataCondition(const Cigi_uint8 ExcessVarLenDataConditionIn, bool bndchk=true)
    {
-      ExcessVarLenDataCondition = ExcessVarLenDataConditionIn;
+      ExcessVarLenDataCondition = ExcessVarLenDataConditionIn ? true : false;
 
       return(CIGI_SUCCESS);
    }

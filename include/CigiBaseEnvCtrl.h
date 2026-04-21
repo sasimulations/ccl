@@ -81,6 +81,9 @@
 #define CIGI_CELESTIAL_CTRL_PACKET_ID_V4 0x08
 #define CIGI_CELESTIAL_CTRL_PACKET_SIZE_V4 24
 
+#define CIGI_CELESTIAL_CTRL_PACKET_ID_V4_1 0x08
+#define CIGI_CELESTIAL_CTRL_PACKET_SIZE_V4_1 24
+
 
 class CigiEnvCtrlV1;
 class CigiEnvCtrlV2;
@@ -88,6 +91,7 @@ class CigiAtmosCtrlV3;
 class CigiAtmosCtrlV4;
 class CigiCelestialCtrlV3;
 class CigiCelestialCtrlV4;
+class CigiCelestialCtrlV4_1;
 class CigiHoldEnvCtrl;
 
 
@@ -100,6 +104,7 @@ friend class CigiAtmosCtrlV3;
 friend class CigiAtmosCtrlV4;
 friend class CigiCelestialCtrlV3;
 friend class CigiCelestialCtrlV4;
+friend class CigiCelestialCtrlV4_1;
 friend class CigiHoldEnvCtrl;
 
 protected:
@@ -267,6 +272,12 @@ protected:
    bool AtmosEn;
 
    //=========================================================
+   //! TimeZoneEn<br>
+   //! The time zone enable.
+   //!
+   bool TimeZoneEn;
+
+   //=========================================================
    //! Aerosol<br>
    //! The current aerosol density
    //!
@@ -313,6 +324,13 @@ protected:
    //! global barometric pressure
    //!
    float BaroPress;
+
+   //=========================================================
+   //! TimeZone<br>
+   //! time zone
+   //!
+   float TimeZone;
+
 };
 
 #endif // #if !defined(_CIGI_BASE_ENV_CTRL_INCLUDED_)

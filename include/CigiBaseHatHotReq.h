@@ -85,6 +85,9 @@
 #define CIGI_HAT_HOT_REQ_PACKET_ID_V4 0x17
 #define CIGI_HAT_HOT_REQ_PACKET_SIZE_V4 40
 
+#define CIGI_HAT_HOT_REQ_PACKET_ID_V4_1 0x17
+#define CIGI_HAT_HOT_REQ_PACKET_SIZE_V4_1 40
+
 
 
 class CigiHatReqV1;
@@ -93,6 +96,7 @@ class CigiHotReqV2;
 class CigiHatHotReqV3;
 class CigiHatHotReqV3_2;
 class CigiHatHotReqV4;
+class CigiHatHotReqV4_1;
 
 
 class CIGI_SPEC CigiBaseHatHotReq : public CigiBasePacket
@@ -104,6 +108,7 @@ friend class CigiHotReqV2;
 friend class CigiHatHotReqV3;
 friend class CigiHatHotReqV3_2;
 friend class CigiHatHotReqV4;
+friend class CigiHatHotReqV4_1;
 
 public:
 
@@ -123,6 +128,7 @@ public:
    enum CoordSysGrp
    {
       Geodetic=0,
+      Global = 0,
       Entity=1
    };
 

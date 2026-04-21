@@ -89,7 +89,7 @@
 // ================================================
 // CigiLosRespV1
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiLosRespV1::CigiLosRespV1()
+CigiLosRespV1::CigiLosRespV1() : CigiBaseLosResp()
 {
 
    PacketID = CIGI_LOS_RESP_PACKET_ID_V1;
@@ -97,26 +97,6 @@ CigiLosRespV1::CigiLosRespV1()
    Version = 1;
    MinorVersion = 0;
 
-   LosID = 0;
-   Valid = false;
-   EntityIDValid = false;
-   RangeValid = false;
-   Visible = false;
-   IntersectionCoordSys = Geodetic;
-   HostFrame = 0;
-   RespCount = 0;
-   EntityID = 0;
-   Range = 0.0;
-   LatOrXoff = 0.0;
-   LonOrYoff = 0.0;
-   AltOrZoff = 0.0;
-   Red = 0;
-   Green = 0;
-   Blue = 0;
-   Alpha = 0;
-   Material = 0;
-   NormalAz = 0.0;
-   NormalEl = 0.0;
    ValidV1or2 = true;
 
 }

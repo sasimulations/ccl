@@ -59,7 +59,22 @@
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiBaseSOF::CigiBaseSOF()
 {
-
+    BSwapEn = false;
+    DatabaseID = 0;
+    FrameCntr = 0;
+    TimeStampV2 = 0.0f;
+    TimeStampV3 = 0;
+    TimeStampExt = 0;
+    ByteSwap = 0x0000; // unused
+    IGMode = Standby;
+    TimestampValid = false;
+    EarthRefModel = WGS84;
+    LastRcvdHostFrame = 0;
+    OverframingCondition = false;
+    PagingCondition = false;
+    ExcessVarLenDataCondition = false;
+    Timestamp64En = false;
+    SupportedGlobalCoordinateSystemCondition = false;
 }
 
 // ================================================

@@ -69,8 +69,12 @@
 #define CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4 0x02
 #define CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_SIZE_V4 32
 
+#define CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4_1 0x02
+#define CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_SIZE_V4_1 40
+
 class CigiConfClampEntityCtrlV3;
 class CigiConfClampEntityCtrlV4;
+class CigiConfClampEntityCtrlV4_1;
 
 
 class CIGI_SPEC CigiBaseConfClampEntityCtrl : public CigiBasePacket
@@ -78,6 +82,7 @@ class CIGI_SPEC CigiBaseConfClampEntityCtrl : public CigiBasePacket
 
 friend class CigiConfClampEntityCtrlV3;
 friend class CigiConfClampEntityCtrlV4;
+friend class CigiConfClampEntityCtrlV4_1;
 
 public:
 
@@ -192,7 +197,7 @@ public:
    //=========================================================
    //! Gets the Lat value.
    //! \return the current Lat.
-   double GetLat(void) const { return(Lat); }
+   double GetLat(void) const { return(LatX); }
 
 
    //+> Lon
@@ -209,7 +214,7 @@ public:
    //=========================================================
    //! Gets the Lon value.
    //! \return the current Lon.
-   double GetLon(void) const { return(Lon); }
+   double GetLon(void) const { return(LonY); }
 
 
 
@@ -230,16 +235,22 @@ protected:
    float Yaw;
 
    //=========================================================
-   //! Lat<br>
-   //! Latitude
+   //! LatX<br>
+   //! Latitude or X
    //!
-   double Lat;
+   double LatX;
 
    //=========================================================
-   //! Lon<br>
-   //! Longitude
+   //! LonY<br>
+   //! Longitude or Y
    //!
-   double Lon;
+   double LonY;
+
+   //=========================================================
+   //! Z<br>
+   //! Z
+   //!
+   double Z;
 
 
 };

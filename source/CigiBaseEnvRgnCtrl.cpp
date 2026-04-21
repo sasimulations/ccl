@@ -59,6 +59,20 @@
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiBaseEnvRgnCtrl::CigiBaseEnvRgnCtrl()
 {
+    RegionID = 0;
+    RgnState = Inactive;
+    WeatherProp = UseLast;
+    Aerosol = UseLast;
+    MaritimeSurface = UseLast;
+    TerrestrialSurface = UseLast;
+    LatX = 0.0;
+    LonY = 0.0;
+    Z = 0.0;
+    XSize = 0.0;
+    YSize = 0.0;
+    CornerRadius = 0.0;
+    Rotation = 0.0;
+    Transition = 0.0;
 
 }
 
@@ -235,7 +249,7 @@ int CigiBaseEnvRgnCtrl::SetLat(const double LatIn, bool bndchk)
    }
 #endif
 
-   Lat = LatIn;
+   LatX = LatIn;
    return(CIGI_SUCCESS);
 
 }
@@ -257,7 +271,7 @@ int CigiBaseEnvRgnCtrl::SetLon(const double LonIn, bool bndchk)
    }
 #endif
 
-   Lon = LonIn;
+   LonY = LonIn;
    return(CIGI_SUCCESS);
 
 }

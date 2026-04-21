@@ -87,7 +87,7 @@
 // ================================================
 // CigiEnvCtrlV1
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiEnvCtrlV1::CigiEnvCtrlV1()
+CigiEnvCtrlV1::CigiEnvCtrlV1() : CigiBaseEnvCtrl()
 {
 
    PacketID = CIGI_ENV_CTRL_PACKET_ID_V1;
@@ -95,26 +95,7 @@ CigiEnvCtrlV1::CigiEnvCtrlV1()
    Version = 1;
    MinorVersion = 0;
 
-   Hour = 0;
-   Minute = 0;
-   Month = 1;
-   Day = 1;
-   Year = 2000;
-   StarInt = 0.0;
-   EphemerisEn = false;
-   SunEn = false;
-   MoonEn = false;
-   StarEn = false;
    DateVld = true;
-   AtmosEn = false;
-   Aerosol = 0.0;
-   Humidity = 30;
-   AirTemp = 0.0;
-   Visibility = 64373.76f;
-   HorizWindSp = 0.0;
-   VertWindSp = 0.0;
-   WindDir = 0.0;
-   BaroPress = 1013.25;
 
 }
 

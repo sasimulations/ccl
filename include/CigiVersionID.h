@@ -33,7 +33,10 @@
  *  
  *  07/29/2015 Chas Whitley                       Version 4.0.0
  *  Updated IsKnownCigiVersion(), BestCigiVersion()
- *
+ *  
+ *  02/23/2026 Paul Slade                       Version 4.1.0
+ *  Updated to support CIGI 4.1
+*
  * </pre>
  *  Author: The Boeing Company
  *
@@ -137,7 +140,7 @@ public:
          }
          else if(CigiMajorVersion == 4)
          {
-            if((CigiMinorVersion == 0) && (CigiMinorVersion == 0))
+            if((CigiMinorVersion >= 0) && (CigiMinorVersion <= 1))
                KnownVer = true;
          }
       }
@@ -163,7 +166,8 @@ public:
       else if(CigiMajorVersion == 4)
       {
          // Set the version to the most mature version of CIGI
-         CigiMinorVersion = 0;
+	  if (CigiMinorVersion > 1)
+	      CigiMinorVersion = 1;
       }
    }
 

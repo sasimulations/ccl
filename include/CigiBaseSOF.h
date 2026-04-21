@@ -95,11 +95,15 @@
 #define CIGI_SOF_PACKET_ID_V4 0xffff
 #define CIGI_SOF_PACKET_SIZE_V4 24
 
+#define CIGI_SOF_PACKET_ID_V4_1 0xffff
+#define CIGI_SOF_PACKET_SIZE_V4_1 32
+
 class CigiSOFV1;
 class CigiSOFV2;
 class CigiSOFV3;
 class CigiSOFV3_2;
 class CigiSOFV4;
+class CigiSOFV4_1;
 
 
 //=========================================================
@@ -114,6 +118,7 @@ friend class CigiSOFV2;
 friend class CigiSOFV3;
 friend class CigiSOFV3_2;
 friend class CigiSOFV4;
+friend class CigiSOFV4_1;
 
 public:
 
@@ -374,6 +379,12 @@ protected:
    Cigi_uint32 TimeStampV3;
 
    //=========================================================
+   //! Time Stamp Extended - V4.1 format<br>
+   //! Specifies the upper 32 bits of a 64 bit time stamp if Timestamp64En is true<br>
+   //!
+   Cigi_uint32 TimeStampExt;
+
+   //=========================================================
    //! Byte Swap Constant for V3<br>
    //! Constant used to determine if byteswapping is needed
    //!   in V3.
@@ -404,25 +415,39 @@ protected:
    bool TimestampValid;
 
    //=========================================================
+   //! 64 bit Timestamp Enable<br>
+   //!  true - Use 64 bit time stamp (introduced in CIGI 4.1) <br>
+   //!  false - Use 32 bit time stamp
+   //!
+   bool Timestamp64En;
+
+   //=========================================================
    //! IG Condition - Overframing<br>
    //!  0 - Not Present<br>
    //!  1 - Present<br>
    //!
-   Cigi_uint8 OverframingCondition;
+   bool OverframingCondition;
 
    //=========================================================
    //! IG Condition - Paging<br>
    //!  0 - Not Present<br>
    //!  1 - Present<br>
    //!
-   Cigi_uint8 PagingCondition;
+   bool PagingCondition;
 
    //=========================================================
    //! IG Condition - Excessive Variable Length Data<br>
    //!  0 - Not Present<br>
    //!  1 - Present<br>
    //!
-   Cigi_uint8 ExcessVarLenDataCondition;
+   bool ExcessVarLenDataCondition;
+
+   //=========================================================
+   //! IG Condition - Unsupported Global Coordinate System<br>
+   //!  0 - Not Present<br>
+   //!  1 - Present<br>
+   //!
+   bool SupportedGlobalCoordinateSystemCondition;
 
 };
 

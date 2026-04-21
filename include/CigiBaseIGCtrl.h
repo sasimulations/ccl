@@ -96,12 +96,16 @@
 #define CIGI_IG_CTRL_PACKET_ID_V4 0
 #define CIGI_IG_CTRL_PACKET_SIZE_V4 24
 
+#define CIGI_IG_CTRL_PACKET_ID_V4_1 0
+#define CIGI_IG_CTRL_PACKET_SIZE_V4_1 24
+
 class CigiIGCtrlV1;
 class CigiIGCtrlV2;
 class CigiIGCtrlV3;
 class CigiIGCtrlV3_2;
 class CigiIGCtrlV3_3;
 class CigiIGCtrlV4;
+class CigiIGCtrlV4_1;
 
 
 //=========================================================
@@ -116,6 +120,7 @@ friend class CigiIGCtrlV3;
 friend class CigiIGCtrlV3_2;
 friend class CigiIGCtrlV3_3;
 friend class CigiIGCtrlV4;
+friend class CigiIGCtrlV4_1;
 
 public:
 
@@ -324,6 +329,12 @@ protected:
    Cigi_uint32 TimeStampV3;
 
    //=========================================================
+   //! Time Stamp Extended - V4.1 format<br>
+   //! Specifies the upper 32 bits of a 64 bit time stamp if Timestamp64En is true<br>
+   //!
+   Cigi_uint32 TimeStampExt;
+
+   //=========================================================
    //! Byte Swap Constant for V3<br>
    //! Constant used to determine if byteswapping is needed
    //!   in V3.
@@ -354,11 +365,18 @@ protected:
    bool BoresightTrackDevice;
 
    //=========================================================
-   //! Timestame Valid<br>
+   //! Timestamp Valid<br>
    //!  true - The timestamp is valid and usable<br>
    //!  false - The timestamp is not valid.
    //!
    bool TimestampValid;
+
+   //=========================================================
+   //! 64 bit Timestamp Enable<br>
+   //!  true - Use 64 bit time stamp (introduced in CIGI 4.1) <br>
+   //!  false - Use 32 bit time stamp
+   //!
+   bool Timestamp64En;
 
    //=========================================================
    //! Smoothing Enabled<br>

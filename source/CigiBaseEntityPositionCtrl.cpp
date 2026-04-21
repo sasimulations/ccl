@@ -52,7 +52,22 @@
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiBaseEntityPositionCtrl::CigiBaseEntityPositionCtrl()
 {
+    EntityID = 0;
+    ParentID = 0;
 
+    Roll = 0.0f;
+    Pitch = 0.0f;
+    Yaw = 0.0f;
+    LatOrXoff = 0.0f;
+    LonOrYoff = 0.0f;
+    AltOrZoff = 0.0f;
+
+    AttachState = Detach;
+    ClampState = NoClamp;
+
+    LerpDuration = 0;
+    ParentAttachPointID = 0;
+    ChildAttachPointID = 0;
 }
 
 // ================================================

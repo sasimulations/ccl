@@ -67,9 +67,13 @@
 #define CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4 0x0ff6
 #define CIGI_MARITIME_SURFACE_RESP_PACKET_SIZE_V4 24
 
+#define CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4_1 0x0ff6
+#define CIGI_MARITIME_SURFACE_RESP_PACKET_SIZE_V4_1 24
+
 
 class CigiMaritimeSurfaceRespV3;
 class CigiMaritimeSurfaceRespV4;
+class CigiMaritimeSurfaceRespV4_1;
 
 
 class CIGI_SPEC CigiBaseMaritimeSurfaceResp : public CigiBasePacket
@@ -77,6 +81,7 @@ class CIGI_SPEC CigiBaseMaritimeSurfaceResp : public CigiBasePacket
 
 friend class CigiMaritimeSurfaceRespV3;
 friend class CigiMaritimeSurfaceRespV4;
+friend class CigiMaritimeSurfaceRespV4_1;
 
 public:
 
@@ -225,12 +230,6 @@ protected:
    //==> Member variables
 
    //=========================================================
-   //! RequestID<br>
-   //! Request ID
-   //!
-   Cigi_uint8 RequestID;
-
-   //=========================================================
    //! SurfaceHeight<br>
    //! Sea Surface Height
    //!
@@ -248,6 +247,18 @@ protected:
    //!
    float Clarity;
 
+   //=========================================================
+   //! RequestID<br>
+   //! Request ID
+   //!
+   Cigi_uint8 RequestID;
+
+
+   //=========================================================
+   //! InvalidLocation<br>
+   //! Request ID
+   //!
+   bool InvalidLocation;
 
 };
 

@@ -82,6 +82,9 @@
 #define CIGI_SENSOR_XRESP_PACKET_ID_V4 0x0ffa
 #define CIGI_SENSOR_XRESP_PACKET_SIZE_V4 56
 
+#define CIGI_SENSOR_XRESP_PACKET_ID_V4_1 0x0ffa
+#define CIGI_SENSOR_XRESP_PACKET_SIZE_V4_1 56
+
 
 class CigiSensorRespV1;
 class CigiSensorRespV2;
@@ -89,6 +92,7 @@ class CigiSensorRespV3;
 class CigiSensorRespV4;
 class CigiSensorXRespV3;
 class CigiSensorXRespV4;
+class CigiSensorXRespV4_1;
 
 
 class CIGI_SPEC CigiBaseSensorResp : public CigiBasePacket
@@ -100,6 +104,7 @@ friend class CigiSensorRespV3;
 friend class CigiSensorRespV4;
 friend class CigiSensorXRespV3;
 friend class CigiSensorXRespV4;
+friend class CigiSensorXRespV4_1;
 
 public:
 

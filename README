@@ -12,6 +12,22 @@ Cmake is used to build
 CCL for multiple platforms. For simplicity a number of scripts are provided in
 the ccl directory for building the most common build targets.
 
+Compile preprocessor options
+----------------------------
+
+The compile preprocessor options available are:
+
+CIGI_NO_EXCEPT - if not defined an exception will be thrown for any parameter bounds check violations
+CIGI_LITTLE_ENDIAN - define if target CPU is little endian (e.g. x86-64)
+
+The following three determine what mechanism is used for processing incoming packets in CigiIncomingMsg::ProcessPacket. 
+For optimum performance two of the three should be defined, meaning whichever is not defined is the method that is used to forward packets to user code.
+
+CIGI_NO_EVENT_PROCESSING   - don't trigger event handlers
+CIGI_NO_CALLBACK           - don't perform callbacks
+CIGI_NO_SIGNAL_PROCESSING  - don't process signal handlers
+
+
 Windows systems
 ---------------
 

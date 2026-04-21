@@ -69,9 +69,13 @@
 #define CIGI_ENV_RGN_CTRL_PACKET_ID_V4 0x0a
 #define CIGI_ENV_RGN_CTRL_PACKET_SIZE_V4 48
 
+#define CIGI_ENV_RGN_CTRL_PACKET_ID_V4_1 0x0a
+#define CIGI_ENV_RGN_CTRL_PACKET_SIZE_V4_1 56
+
 
 class CigiEnvRgnCtrlV3;
 class CigiEnvRgnCtrlV4;
+class CigiEnvRgnCtrlV4_1;
 
 
 class CIGI_SPEC CigiBaseEnvRgnCtrl : public CigiBasePacket
@@ -79,6 +83,7 @@ class CIGI_SPEC CigiBaseEnvRgnCtrl : public CigiBasePacket
 
 friend class CigiEnvRgnCtrlV3;
 friend class CigiEnvRgnCtrlV4;
+friend class CigiEnvRgnCtrlV4_1;
 
 public:
 
@@ -286,7 +291,7 @@ public:
    //=========================================================
    //! Gets the Lat value.
    //! \return the current Lat.
-   double GetLat(void) const { return(Lat); }
+   double GetLat(void) const { return(LatX); }
 
 
    //+> Lon
@@ -303,7 +308,7 @@ public:
    //=========================================================
    //! Gets the Lon value.
    //! \return the current Lon.
-   double GetLon(void) const { return(Lon); }
+   double GetLon(void) const { return(LonY); }
 
 
    //+> XSize
@@ -455,13 +460,13 @@ protected:
    //! Lat<br>
    //! Latitude
    //!
-   double Lat;
+   double LatX;
 
    //=========================================================
    //! Lon<br>
    //! Longitude
    //!
-   double Lon;
+   double LonY;
 
    //=========================================================
    //! XSize<br>
@@ -492,6 +497,12 @@ protected:
    //! Width of the transition band.
    //!
    float Transition;
+
+   //=========================================================
+   //! Z<br>
+   //! Z
+   //!
+   double Z;
 
 
 };

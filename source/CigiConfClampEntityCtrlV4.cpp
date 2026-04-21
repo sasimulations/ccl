@@ -76,7 +76,7 @@
 // ================================================
 // CigiConfClampEntityCtrlV4
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiConfClampEntityCtrlV4::CigiConfClampEntityCtrlV4()
+CigiConfClampEntityCtrlV4::CigiConfClampEntityCtrlV4() : CigiBaseConfClampEntityCtrl()
 {
 
    PacketID = CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4;
@@ -84,10 +84,6 @@ CigiConfClampEntityCtrlV4::CigiConfClampEntityCtrlV4()
    Version = 4;
    MinorVersion = 0;
 
-   EntityID = 0;
-   Yaw = 0.0;
-   Lat = 0.0;
-   Lon = 0.0;
 
 }
 
@@ -121,8 +117,8 @@ int CigiConfClampEntityCtrlV4::Pack(CigiBasePacket * Base, Cigi_uint8 * Buff, vo
    *CDta.s++ = 0; // reserved
    *CDta.f++ = Data->Yaw;
    *CDta.f++ = 0.0; // reserved
-   *CDta.d++ = Data->Lat;
-   *CDta.d++ = Data->Lon;
+   *CDta.d++ = Data->LatX;
+   *CDta.d++ = Data->LonY;
 
    return(PacketSize);
 
@@ -145,16 +141,16 @@ int CigiConfClampEntityCtrlV4::Unpack(Cigi_uint8 * Buff, bool Swap, void *Spec)
        CDta.s++; // reserved
        Yaw = *CDta.f++;
        CDta.f++; // reserved
-       Lat = *CDta.d++;
-       Lon = *CDta.d++;
+       LatX = *CDta.d++;
+       LonY = *CDta.d++;
    }
    else {
        CigiSwap2(&EntityID, CDta.s++);
        CDta.s++; // reserved
        CigiSwap4(&Yaw, CDta.f++);
        CDta.f++; // reserved
-       CigiSwap8(&Lat, CDta.d++);
-       CigiSwap8(&Lon, CDta.d++);
+       CigiSwap8(&LatX, CDta.d++);
+       CigiSwap8(&LonY, CDta.d++);
    }
 
    return(PacketSize);

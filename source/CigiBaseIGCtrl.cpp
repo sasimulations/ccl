@@ -68,7 +68,22 @@
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiBaseIGCtrl::CigiBaseIGCtrl()
 {
-
+    BSwapEn = false;
+    DatabaseID = 0;
+    FrameCntr = 0;
+    TimeStampV1 = 0;
+    TimeStampV2 = 0.0f;
+    TimeStampV3 = 0;
+    TimeStampExt = 0;
+    ByteSwap = 0x8000;
+    IGMode = Standby;
+    TrackDeviceEn = Disable;
+    BoresightTrackDevice = false;
+    TimestampValid = false;
+    SmoothingEn = false;
+    LastRcvdIGFrame = 0;
+    EntityTypeSubEn = false;
+    Timestamp64En = false;
 }
 
 // ================================================

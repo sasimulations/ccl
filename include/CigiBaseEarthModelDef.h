@@ -67,8 +67,12 @@
 #define CIGI_EARTH_MODEL_DEF_PACKET_ID_V4 0x12
 #define CIGI_EARTH_MODEL_DEF_PACKET_SIZE_V4 24
 
+#define CIGI_EARTH_MODEL_DEF_PACKET_ID_V4_1 0x12
+#define CIGI_EARTH_MODEL_DEF_PACKET_SIZE_V4_1 24
+
 class CigiEarthModelDefV3;
 class CigiEarthModelDefV4;
+class CigiEarthModelDefV4_1;
 
 
 class CIGI_SPEC CigiBaseEarthModelDef : public CigiBasePacket
@@ -76,6 +80,7 @@ class CIGI_SPEC CigiBaseEarthModelDef : public CigiBasePacket
 
 friend class CigiEarthModelDefV3;
 friend class CigiEarthModelDefV4;
+friend class CigiEarthModelDefV4_1;
 
 public:
 
@@ -204,13 +209,8 @@ public:
 
 protected:
 
-   //==> Member variables
+    //==> Member variables
 
-   //=========================================================
-   //! CustomERMEn<br>
-   //! Custom Earth Referance Model Enable
-   //!
-   bool CustomERMEn;
 
    //=========================================================
    //! EquatorialRadius<br>
@@ -224,6 +224,23 @@ protected:
    //!
    double Flattening;
 
+   //=========================================================
+   //! EPSGID<br>
+   //! EPSG ID to use when EPSGEn is true.
+   //!
+   Cigi_uint16 EPSGID;
+
+   //=========================================================
+   //! CustomERMEn<br>
+   //! Custom Earth Referance Model Enable
+   //!
+   bool CustomERMEn;
+
+   //=========================================================
+   //! CustomERMEn<br>
+   //! Custom Earth Referance Model Enable
+   //!
+   bool EPSGEn;
 
 };
 

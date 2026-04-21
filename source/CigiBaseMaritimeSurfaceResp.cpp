@@ -63,6 +63,11 @@
 CigiBaseMaritimeSurfaceResp::CigiBaseMaritimeSurfaceResp()
 {
 
+    RequestID = 0;
+    SurfaceHeight = 0.0;
+    WaterTemp = 0.0;
+    Clarity = 0.0;
+    InvalidLocation = false;
 }
 
 

@@ -65,28 +65,13 @@
 // ================================================
 // CigiIGCtrlV3_2
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiIGCtrlV3_2::CigiIGCtrlV3_2()
+CigiIGCtrlV3_2::CigiIGCtrlV3_2() : CigiBaseIGCtrl()
 {
 
    PacketID = CIGI_IG_CTRL_PACKET_ID_V3_2;
    PacketSize = CIGI_IG_CTRL_PACKET_SIZE_V3_2;
    Version = 3;
    MinorVersion = 2;
-
-   BSwapEn = false;
-   DatabaseID = 0;
-   FrameCntr = 0;
-   TimeStampV1 = 0;
-   TimeStampV2 = 0.0f;
-   TimeStampV3 = 0;
-   ByteSwap = 0x8000;
-   IGMode = Standby;
-   TrackDeviceEn = Disable;
-   BoresightTrackDevice = false;
-   TimestampValid = false;
-   SmoothingEn = false;
-   LastRcvdIGFrame = 0;
-   EntityTypeSubEn = false;
 
 }
 

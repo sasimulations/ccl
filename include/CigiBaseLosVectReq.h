@@ -79,12 +79,16 @@
 #define CIGI_LOS_VECT_REQ_PACKET_ID_V4 0x19
 #define CIGI_LOS_VECT_REQ_PACKET_SIZE_V4 64
 
+#define CIGI_LOS_VECT_REQ_PACKET_ID_V4_1 0x19
+#define CIGI_LOS_VECT_REQ_PACKET_SIZE_V4_1 64
+
 
 class CigiLosVectReqV1;
 class CigiLosVectReqV2;
 class CigiLosVectReqV3;
 class CigiLosVectReqV3_2;
 class CigiLosVectReqV4;
+class CigiLosVectReqV4_1;
 
 
 class CIGI_SPEC CigiBaseLosVectReq : public CigiBasePacket
@@ -95,6 +99,7 @@ friend class CigiLosVectReqV2;
 friend class CigiLosVectReqV3;
 friend class CigiLosVectReqV3_2;
 friend class CigiLosVectReqV4;
+friend class CigiLosVectReqV4_1;
 
 public:
 
@@ -113,6 +118,7 @@ public:
    enum CoordSysGrp
    {
       Geodetic=0,
+      Global = 0,
       Entity=1
    };
 

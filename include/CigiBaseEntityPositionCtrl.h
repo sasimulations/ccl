@@ -49,8 +49,12 @@
 #define CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4 0x01
 #define CIGI_ENTITY_POSITION_CTRL_PACKET_SIZE_V4 48
 
+#define CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4_1 0x01
+#define CIGI_ENTITY_POSITION_CTRL_PACKET_SIZE_V4_1 56
+
 
 class CigiEntityPositionCtrlV4;
+class CigiEntityPositionCtrlV4_1;
 
 
 //=========================================================
@@ -60,6 +64,7 @@ class CIGI_SPEC CigiBaseEntityPositionCtrl : public CigiBasePacket
 {
 
 friend class CigiEntityPositionCtrlV4;
+friend class CigiEntityPositionCtrlV4_1;
 
 public:
 
@@ -513,6 +518,21 @@ protected:
    //!
 	double AltOrZoff;
 
+
+    //=========================================================
+    //! Lerp duration.<br>
+    //!
+    Cigi_uint8 LerpDuration;
+
+    //=========================================================
+    //! Parent Attachment point ID.<br>
+    //!
+    Cigi_uint16 ParentAttachPointID;
+
+    //=========================================================
+    //! Child Attachment point ID.<br>
+    //!
+    Cigi_uint16 ChildAttachPointID;
 
    //==> Member flags
 

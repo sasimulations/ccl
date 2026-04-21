@@ -62,7 +62,7 @@
 // ================================================
 // CigiEntityPositionCtrlV4
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiEntityPositionCtrlV4::CigiEntityPositionCtrlV4()
+CigiEntityPositionCtrlV4::CigiEntityPositionCtrlV4() : CigiBaseEntityPositionCtrl()
 {
 
    PacketID = CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4;
@@ -70,18 +70,6 @@ CigiEntityPositionCtrlV4::CigiEntityPositionCtrlV4()
    Version = 4;
    MinorVersion = 0;
 
-   EntityID = 0;
-   ParentID = 0;
-
-   Roll = 0.0f;
-   Pitch = 0.0f;
-   Yaw = 0.0f;
-   LatOrXoff = 0.0f;
-   LonOrYoff = 0.0f;
-   AltOrZoff = 0.0f;
-
-   AttachState = Detach;
-   ClampState = NoClamp;
 }
 
 // ================================================

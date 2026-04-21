@@ -48,6 +48,12 @@
 CigiBaseEarthModelDef::CigiBaseEarthModelDef()
 {
 
+    CustomERMEn = false;
+    EquatorialRadius = 0.0;
+    Flattening = 0.0;
+    EPSGID = 4326; // ID for WGS84
+    EPSGEn = false;
+
 }
 
 // ================================================

@@ -72,17 +72,13 @@
 // ================================================
 // CigiEarthModelDefV3
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiEarthModelDefV4::CigiEarthModelDefV4()
+CigiEarthModelDefV4::CigiEarthModelDefV4() : CigiBaseEarthModelDef()
 {
 
    PacketID = CIGI_EARTH_MODEL_DEF_PACKET_ID_V4;
    PacketSize = CIGI_EARTH_MODEL_DEF_PACKET_SIZE_V4;
    Version = 4;
    MinorVersion = 0;
-
-   CustomERMEn = false;
-   EquatorialRadius = 0.0;
-   Flattening = 0.0;
 
 }
 

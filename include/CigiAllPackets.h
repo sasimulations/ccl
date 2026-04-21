@@ -39,7 +39,10 @@
  *
  *  07/29/2015 Chas Whitley                      Version 4.0.0
  *  Initial Release for CIGI 4.0 compatibility.
- *
+ *  
+ *  02/23/2026 Paul Slade                       Version 4.1.0
+ *  Updated to support CIGI 4.1
+*
  * </pre>
  *  Author: The Boeing Company
  *
@@ -56,6 +59,7 @@
 #include "CigiIGCtrlV3_2.h"
 #include "CigiIGCtrlV3_3.h"
 #include "CigiIGCtrlV4.h"
+#include "CigiIGCtrlV4_1.h"
 
 // Entity control
 #include "CigiEntityCtrlV1.h"
@@ -75,6 +79,7 @@
 #include "CigiViewCtrlV2.h"
 #include "CigiViewCtrlV3.h"
 #include "CigiViewCtrlV4.h"
+#include "CigiViewCtrlV4_1.h"
 
 // Rate Control
 #include "CigiRateCtrlV1.h"
@@ -117,6 +122,7 @@
 #include "CigiLosSegReqV3.h"
 #include "CigiLosSegReqV3_2.h"
 #include "CigiLosSegReqV4.h"
+#include "CigiLosSegReqV4_1.h"
 
 // LOS Vector Request
 #include "CigiLosVectReqV1.h"
@@ -124,6 +130,7 @@
 #include "CigiLosVectReqV3.h"
 #include "CigiLosVectReqV3_2.h"
 #include "CigiLosVectReqV4.h"
+#include "CigiLosVectReqV4_1.h"
 
 // Hat Hot Request
 #include "CigiHatReqV1.h"
@@ -132,6 +139,7 @@
 #include "CigiHatHotReqV3.h"
 #include "CigiHatHotReqV3_2.h"
 #include "CigiHatHotReqV4.h"
+#include "CigiHatHotReqV4_1.h"
 
 // Environmental Control
 #include "CigiEnvCtrlV1.h"
@@ -140,6 +148,12 @@
 #include "CigiAtmosCtrlV4.h"
 #include "CigiCelestialCtrl.h"
 #include "CigiCelestialCtrlV4.h"
+#include "CigiCelestialCtrlV4_1.h"
+#include "CigiManualCelestialCtrlV4_1.h"
+#include "CigiCelestialReqV4_1.h"
+
+// Celestial Sphere Response
+#include "CigiCelestialRespV4_1.h"
 
 // Special Effect Definision
 #include "CigiSpecEffDefV1.h"
@@ -163,6 +177,7 @@
 // Conformal Clamped Entity Control
 #include "CigiConfClampEntityCtrlV3.h"
 #include "CigiConfClampEntityCtrlV4.h"
+#include "CigiConfClampEntityCtrlV4_1.h"
 
 // Maritime Surface Conditions Control
 #include "CigiMaritimeSurfaceCtrlV3.h"
@@ -171,6 +186,7 @@
 // Environmental Region Control
 #include "CigiEnvRgnCtrlV3.h"
 #include "CigiEnvRgnCtrlV4.h"
+#include "CigiEnvRgnCtrlV4_1.h"
 
 // Terrestrial Surface Control
 #include "CigiTerrestrialSurfaceCtrlV3.h"
@@ -183,6 +199,7 @@
 // Earth Model Definition
 #include "CigiEarthModelDefV3.h"
 #include "CigiEarthModelDefV4.h"
+#include "CigiEarthModelDefV4_1.h"
 
 // Positon Request
 #include "CigiPositionReqV3.h"
@@ -191,6 +208,7 @@
 // Environmental Conditions Request
 #include "CigiEnvCondReqV3.h"
 #include "CigiEnvCondReqV4.h"
+#include "CigiEnvCondReqV4_1.h"
 
 // Wave Control
 #include "CigiWaveCtrlV3.h"
@@ -202,6 +220,7 @@
 #include "CigiSOFV3.h"
 #include "CigiSOFV3_2.h"
 #include "CigiSOFV4.h"
+#include "CigiSOFV4_1.h"
 
 // Collision Detection Segment Response
 #include "CigiCollDetSegRespV1.h"
@@ -223,6 +242,7 @@
 // Sensor Extended Response
 #include "CigiSensorXRespV3.h"
 #include "CigiSensorXRespV4.h"
+#include "CigiSensorXRespV4_1.h"
 
 // Los Response
 #include "CigiLosRespV1.h"
@@ -230,11 +250,13 @@
 #include "CigiLosRespV3.h"
 #include "CigiLosRespV3_2.h"
 #include "CigiLosRespV4.h"
+#include "CigiLosRespV4_1.h"
 
 // Los Extended Response
 #include "CigiLosXRespV3.h"
 #include "CigiLosXRespV3_2.h"
 #include "CigiLosXRespV4.h"
+#include "CigiLosXRespV4_1.h"
 
 // Hat Hot Response
 #include "CigiHatRespV1.h"
@@ -250,6 +272,7 @@
 // Position Response
 #include "CigiPositionRespV3.h"
 #include "CigiPositionRespV4.h"
+#include "CigiPositionRespV4_1.h"
 
 // Weather Condition Response
 #include "CigiWeatherCondRespV3.h"
@@ -262,6 +285,7 @@
 // Maritime Surface Response
 #include "CigiMaritimeSurfaceRespV3.h"
 #include "CigiMaritimeSurfaceRespV4.h"
+#include "CigiMaritimeSurfaceRespV4_1.h"
 
 // Terrestrial Surface Response
 #include "CigiTerrestrialSurfaceRespV3.h"
@@ -328,6 +352,7 @@
 
 // Entity Position Control
 #include "CigiEntityPositionCtrlV4.h"
+#include "CigiEntityPositionCtrlV4_1.h"
 
 // Animation Control
 #include "CigiAnimationCtrlV4.h"

@@ -75,7 +75,10 @@
  *  04/25/2019 Barry Folse                       Version 4.0.3
  *  Added a lock/mutex. This dependency will be required as long as replies
  *  can happen as a result of a call from an async thread.
- *
+  *  
+ *  02/23/2026 Paul Slade                       Version 4.1.0
+ *  Updated to support CIGI 4.1
+*
  * </pre>
  *  Author: The Boeing Company
  *
@@ -792,12 +795,12 @@ protected:
    //=========================================================
    //! An Array of IGCtrl packers
    //!
-   CigiBaseIGCtrl *pIGCtrlPck[7];
+   CigiBaseIGCtrl *pIGCtrlPck[8];
 
    //=========================================================
    //! An Array of SOF packers
    //!
-   CigiBaseSOF *pSOFPck[6];
+   CigiBaseSOF *pSOFPck[7];
 
 
 

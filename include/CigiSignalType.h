@@ -39,7 +39,10 @@
  *  Added SigVelocity, SigAcceleration, SigSymbolTexturedCircleDef,
  *  SigSymbolTexturedPolygonDef, SigSymbolPolygonDef, SigEntityPositionCtrl
  *  SigAnimationCtrl
- *
+  *  
+ *  02/23/2026 Paul Slade                       Version 4.1.0
+ *  Updated to support CIGI 4.1
+*
  *  Author: The Boeing Company
  *
  * </pre>
@@ -121,6 +124,9 @@ namespace CigiSignalType
       SigSymbolTexturedPolygonDef, // chas
       SigEntityPositionCtrl, // chas
       SigAnimationCtrl, // chas
+      SigManualCelestialCtrl,
+      SigCelestialReq,
+      SigCelestialResp,
       SigMax
    } Type;
 }

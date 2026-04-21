@@ -39,7 +39,10 @@
  *  member variable.
  *
  *  07/29/2015 Chas Whitley                       Version 4.0.0
- *
+ *  
+ *  02/23/2026 Paul Slade                       Version 4.1.0
+ *  Updated to support CIGI 4.1
+*
  * </pre>
  *  Author: The Boeing Company
  *
@@ -61,7 +64,7 @@ CigiSession::CigiSession(const int NumInBuf, const int InBufLen,
                          SessionTypeEnum SessionTypeIn) : 
    SessionType( SessionTypeIn ),
    Synchronous( true ),
-   MostMatureKnownCigi(4,0) // chas
+   MostMatureKnownCigi(4,1) // chas
 {
 
    CigiVersionID InitVersion = MostMatureKnownCigi;

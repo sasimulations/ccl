@@ -82,29 +82,13 @@
 // ================================================
 // CigiViewCtrlV2
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiViewCtrlV2::CigiViewCtrlV2()
+CigiViewCtrlV2::CigiViewCtrlV2() : CigiBaseViewCtrl()
 {
 
    PacketID = CIGI_VIEW_CTRL_PACKET_ID_V2;
    PacketSize = CIGI_VIEW_CTRL_PACKET_SIZE_V2;
    Version = 2;
    MinorVersion = 0;
-
-   EntityID = 0;
-   ViewID = 0;
-   GroupID = 0;
-   XOffEn = false;
-   YOffEn = false;
-   ZOffEn = false;
-   RollEn = false;
-   PitchEn = false;
-   YawEn = false;
-   XOff = 0.0;
-   YOff = 0.0;
-   ZOff = 0.0;
-   Roll = 0.0;
-   Pitch = 0.0;
-   Yaw = 0.0;
 
 }
 

@@ -70,11 +70,15 @@
 #define CIGI_POSITION_RESP_PACKET_ID_V4 0x0ff9
 #define CIGI_POSITION_RESP_PACKET_SIZE_V4 48
 
+#define CIGI_POSITION_RESP_PACKET_ID_V4_1 0x0ff9
+#define CIGI_POSITION_RESP_PACKET_SIZE_V4_1 48
+
 
 class CigiPositionRespV1;
 class CigiPositionRespV2;
 class CigiPositionRespV3;
 class CigiPositionRespV4;
+class CigiPositionRespV4_1;
 
 
 class CIGI_SPEC CigiBasePositionResp : public CigiBasePacket
@@ -84,6 +88,7 @@ friend class CigiPositionRespV1;
 friend class CigiPositionRespV2;
 friend class CigiPositionRespV3;
 friend class CigiPositionRespV4;
+friend class CigiPositionRespV4_1;
 
 public:
 
@@ -105,6 +110,7 @@ public:
    enum CoordSysGrp
    {
       Geodetic=0,
+      Global = 0,
       ParentEntity=1,
       Submodel=2
    };

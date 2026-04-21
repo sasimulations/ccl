@@ -72,28 +72,13 @@
 // ================================================
 // CigiEnvRgnCtrlV4
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiEnvRgnCtrlV4::CigiEnvRgnCtrlV4()
+CigiEnvRgnCtrlV4::CigiEnvRgnCtrlV4() : CigiBaseEnvRgnCtrl()
 {
 
    PacketID = CIGI_ENV_RGN_CTRL_PACKET_ID_V4;
    PacketSize = CIGI_ENV_RGN_CTRL_PACKET_SIZE_V4;
    Version = 4;
    MinorVersion = 0;
-
-   RegionID = 0;
-   RgnState = Inactive;
-   WeatherProp = UseLast;
-   Aerosol = UseLast;
-   MaritimeSurface = UseLast;
-   TerrestrialSurface = UseLast;
-   Lat = 0.0;
-   Lon = 0.0;
-   XSize = 0.0;
-   YSize = 0.0;
-   CornerRadius = 0.0;
-   Rotation = 0.0;
-   Transition = 0.0;
-
 }
 
 // ================================================
@@ -132,8 +117,8 @@ int CigiEnvRgnCtrlV4::Pack(CigiBasePacket * Base, Cigi_uint8 * Buff, void *Spec)
    *CDta.c++ = 0;
    *CDta.s++ = Data->RegionID;
 
-   *CDta.d++ = Data->Lat;
-   *CDta.d++ = Data->Lon;
+   *CDta.d++ = Data->LatX;
+   *CDta.d++ = Data->LonY;
    *CDta.f++ = Data->XSize;
    *CDta.f++ = Data->YSize;
    *CDta.f++ = Data->CornerRadius;
@@ -169,8 +154,8 @@ int CigiEnvRgnCtrlV4::Unpack(Cigi_uint8 * Buff, bool Swap, void *Spec)
    {
        RegionID = *CDta.s++;
 
-       Lat = *CDta.d++;
-       Lon = *CDta.d++;
+       LatX = *CDta.d++;
+       LonY = *CDta.d++;
        XSize = *CDta.f++;
        YSize = *CDta.f++;
        CornerRadius = *CDta.f++;
@@ -181,8 +166,8 @@ int CigiEnvRgnCtrlV4::Unpack(Cigi_uint8 * Buff, bool Swap, void *Spec)
    {
        CigiSwap2(&RegionID, CDta.s++);
 
-       CigiSwap8(&Lat, CDta.d++);
-       CigiSwap8(&Lon, CDta.d++);
+       CigiSwap8(&LatX, CDta.d++);
+       CigiSwap8(&LonY, CDta.d++);
        CigiSwap4(&XSize, CDta.f++);
        CigiSwap4(&YSize, CDta.f++);
        CigiSwap4(&CornerRadius, CDta.f++);

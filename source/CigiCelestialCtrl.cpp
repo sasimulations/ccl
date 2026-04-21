@@ -70,36 +70,13 @@
 // ================================================
 // CigiCelestialCtrlV3
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiCelestialCtrlV3::CigiCelestialCtrlV3()
+CigiCelestialCtrlV3::CigiCelestialCtrlV3() : CigiBaseEnvCtrl()
 {
 
    PacketID = CIGI_CELESTIAL_CTRL_PACKET_ID_V3;
    PacketSize = CIGI_CELESTIAL_CTRL_PACKET_SIZE_V3;
    Version = 3;
    MinorVersion = 0;
-
-   Hour = 0;
-   Minute = 0;
-   Seconds = 0.0;
-   Month = 1;
-   Day = 1;
-   Year = 2000;
-   StarInt = 0.0;
-   EphemerisEn = false;
-   SunEn = false;
-   MoonEn = false;
-   StarEn = false;
-   DateVld = false;
-   AtmosEn = false;
-   Aerosol = 0.0;
-   Humidity = 30;
-   AirTemp = 0.0;
-   Visibility = 64373.76f;
-   HorizWindSp = 0.0;
-   VertWindSp = 0.0;
-   WindDir = 0.0;
-   BaroPress = 1013.25;
-
 
 }
 

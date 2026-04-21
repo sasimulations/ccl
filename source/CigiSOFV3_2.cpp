@@ -72,27 +72,13 @@
 // ================================================
 // CigiSOFV3_2
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiSOFV3_2::CigiSOFV3_2()
+CigiSOFV3_2::CigiSOFV3_2() : CigiBaseSOF()
 {
 
    PacketID = CIGI_SOF_PACKET_ID_V3_2;
    PacketSize = CIGI_SOF_PACKET_SIZE_V3_2;
    Version = 3;
    MinorVersion = 2;
-
-   BSwapEn = false;
-   DatabaseID = 0;
-   FrameCntr = 0;
-   TimeStampV2 = 0.0f;
-   TimeStampV3 = 0;
-   ByteSwap = 0x8000;
-   IGMode = Standby;
-   TimestampValid = false;
-   EarthRefModel = WGS84;
-   LastRcvdHostFrame = 0;
-   OverframingCondition = 0;
-   PagingCondition = 0;
-   ExcessVarLenDataCondition = 0;
 
 }
 

@@ -1,6 +1,81 @@
 
 Release Notes:
 
+[02.26.2026]
+Version 4.1.0 - PSlade
+-------------
+Implemented updates to support CIGI 4.1
+
+[06.17.2020]
+Version 4.0.6 - BFolse
+-------------
+CigiOutgoingMsg.cpp Found error when compiling for LINUX
+Changed Line 193
+  std::memset( &attr, 0, sizeof( attr ) );
+To
+  memset( &attr, 0, sizeof( attr ) );
+
+Version 4.0.6 - JDauble
+-------------
+[05.14.2020]
+CigiAccelerationCtrlV4.h, GetArtPartID should be returning a Cigi_uint8 instead of a Cigi_uint16
+cigiSymbolTextDefV4, increase max text size from 235 to 65528
+
+Version 4.0.5 - Chas
+-------------
+Replaced current CigiOutgoingMsg.h with version 4.0.2 CigiOutgoingMsg.h
+File management/repository issue.
+
+Version 4.0.4 - SDevine
+-------------
+[11.04.2019]
+Add code to resolve conflict processing unknown packets and IG Control (packet id: 0 ).
+
+Version 4.0.4 - Chas
+-------------
+[12.19.2019]
+cigibaseweatherctrl.h
+Added Layer ID enumerations
+
+Version 4.0.3 - Chas
+-------------
+[07.25.2019]
+
+XWeatherCtrl.cpp.cpp
+Removed calls to GetTopThickness() and GetBottomThickness()
+
+CigiBaseSignalProcessing.h
+Added OnEntityPositionCtrl
+
+CigiIncomingMsg.cpp
+Added CigiSignalType::SigEntityPositionCtrl and CigiSignalType::SigAnimationCtrl
+to SignalJump()
+
+CigiSession.h
+Moved SessionTypeEnum to Public:
+
+Version 4.0.2 - ECatalano
+-------------
+[05.16.2019]
+
+Changes/Additions:
+------------------
+Resolved member function errors with the following
+CigiBaseSymbolTexturedPolygonDef.cpp
+CigiSymbolTexturedCircleDefV4.cpp
+CigiSymbolTexturedPolygonDefV4.cpp
+
+
+Version 4.0.2 - BFolse
+-------------
+[04.29.2019]
+
+Changes/Additions:
+------------------
+Added a few lines to help enable threading
+CigiOutgoingMsg.cpp
+CigiOutgoingMsg.h
+
  -------------------------------------------------------------------------------
   Release: CCL Version 4.0.0 rev 2
   Date: December 17, 2018

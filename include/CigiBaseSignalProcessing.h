@@ -46,7 +46,10 @@
  *
  *  07/25/2019 Chas Whitley                      Version 4.0.2
  *  Added OnEntityPositionCtrl
- *
+  *  
+ *  02/23/2026 Paul Slade                       Version 4.1.0
+ *  Updated to support CIGI 4.1
+*
  * </pre>
  *  Author: The Boeing Company
  *
@@ -687,6 +690,32 @@ public:
    //!
    virtual void OnWeatherCondResp(CigiBasePacket *Packet) { };
 
+   //=========================================================
+   //! OnWeatherCondResp<br>
+   //! A base function to process incoming Manual Celestial Sphere Control packets.<br>
+   //! This function does nothing in this base class.<br>
+   //! If processing is required, the inheriting class must
+   //!   implement this call.
+   //!
+   virtual void OnManualCelestialCtrl(CigiBasePacket *Packet) { };
+
+   //=========================================================
+   //! OnWeatherCondResp<br>
+   //! A base function to process incoming Celestial Sphere Request packets.<br>
+   //! This function does nothing in this base class.<br>
+   //! If processing is required, the inheriting class must
+   //!   implement this call.
+   //!
+   virtual void OnCelestialReq(CigiBasePacket *Packet) { };
+
+   //=========================================================
+   //! OnWeatherCondResp<br>
+   //! A base function to process incoming Celestial Sphere Response packets.<br>
+   //! This function does nothing in this base class.<br>
+   //! If processing is required, the inheriting class must
+   //!   implement this call.
+   //!
+   virtual void OnCelestialResp(CigiBasePacket *Packet) { };
 
 
    //==+> Unrecognized

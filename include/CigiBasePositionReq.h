@@ -113,6 +113,7 @@ public:
    enum CoordSysGrp
    {
       Geodetic=0,
+      Global = 0,
       ParentEntity=1,
       Submodel=2
    };

@@ -62,6 +62,11 @@
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiBaseConfClampEntityCtrl::CigiBaseConfClampEntityCtrl()
 {
+    EntityID = 0;
+    Yaw = 0.0;
+    LatX = 0.0;
+    LonY = 0.0;
+    Z = 0.0;
 
 }
 
@@ -150,7 +155,7 @@ int CigiBaseConfClampEntityCtrl::SetLat(const double LatIn, bool bndchk)
    }
 #endif
 
-   Lat = LatIn;
+   LatX = LatIn;
    return(CIGI_SUCCESS);
 
 }
@@ -172,7 +177,7 @@ int CigiBaseConfClampEntityCtrl::SetLon(const double LonIn, bool bndchk)
    }
 #endif
 
-   Lon = LonIn;
+   LonY = LonIn;
    return(CIGI_SUCCESS);
 
 }

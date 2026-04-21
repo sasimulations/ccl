@@ -84,7 +84,7 @@
 // ================================================
 // CigiSOFV4
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiSOFV4::CigiSOFV4()
+CigiSOFV4::CigiSOFV4() : CigiBaseSOF()
 {
 
    PacketID = CIGI_SOF_PACKET_ID_V4;
@@ -92,19 +92,6 @@ CigiSOFV4::CigiSOFV4()
    Version = 4;
    MinorVersion = 0;
 
-   BSwapEn = false;
-   DatabaseID = 0;
-   FrameCntr = 0;
-   TimeStampV2 = 0.0f;
-   TimeStampV3 = 0;
-   ByteSwap = 0x0000; // unused
-   IGMode = Standby;
-   TimestampValid = false;
-   EarthRefModel = WGS84;
-   LastRcvdHostFrame = 0;
-   OverframingCondition = 0;
-   PagingCondition = 0;
-   ExcessVarLenDataCondition = 0;
 }
 
 // ================================================
@@ -158,9 +145,9 @@ int CigiSOFV4::Pack(CigiBasePacket * Base, Cigi_uint8 * Buff, void *Spec) const
    *CDta.l++ = Data->LastRcvdHostFrame;
 
    {
-   Cigi_uint16 HDta = (Data->OverframingCondition << 8 ) & 0x0100;
-   HDta |= (Data->PagingCondition << 9 ) & 0x0200;
-   HDta |= (Data->ExcessVarLenDataCondition << 10 ) & 0x0400;
+   Cigi_uint16 HDta = (Data->OverframingCondition ? 0x100 : 0 );
+   HDta |= (Data->PagingCondition ? 0x0200 : 0 );
+   HDta |= (Data->ExcessVarLenDataCondition ? 0x0400 : 0 );
    *CDta.s++ = HDta;
    }
    *CDta.s++ = 0;
@@ -218,9 +205,9 @@ int CigiSOFV4::Unpack(Cigi_uint8 * Buff, bool Swap, void *Spec)
    {
        Cigi_uint16 HDta = *CDta.s++;
 
-       OverframingCondition = ( HDta >> 8 ) & 0x0001;
-       PagingCondition = ( HDta >> 9 ) & 0x0001;
-       ExcessVarLenDataCondition = ( HDta >> 10 ) & 0x0001;
+       OverframingCondition = ( HDta & 0x100 ) ? true : false;
+       PagingCondition = (HDta & 0x200) ? true : false;
+       ExcessVarLenDataCondition = (HDta & 0x400) ? true : false;
    }
    return(CIGI_SUCCESS);
 

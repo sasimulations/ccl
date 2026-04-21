@@ -63,28 +63,13 @@
 // ================================================
 // CigiIGCtrlV4
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiIGCtrlV4::CigiIGCtrlV4()
+CigiIGCtrlV4::CigiIGCtrlV4() : CigiBaseIGCtrl()
 {
 
    PacketID = CIGI_IG_CTRL_PACKET_ID_V4;
    PacketSize = CIGI_IG_CTRL_PACKET_SIZE_V4;
    Version = 4;
    MinorVersion = 0;
-
-   BSwapEn = false;
-   DatabaseID = 0;
-   FrameCntr = 0;
-   TimeStampV1 = 0;
-   TimeStampV2 = 0.0f;
-   TimeStampV3 = 0;
-   ByteSwap = 0x8000;
-   IGMode = Standby;
-   TrackDeviceEn = Disable;
-   BoresightTrackDevice = false;
-   TimestampValid = false;
-   SmoothingEn = false;
-   LastRcvdIGFrame = 0;
-   EntityTypeSubEn = false;
 
 }
 
@@ -179,6 +164,8 @@ int CigiIGCtrlV4::Unpack(Cigi_uint8 * Buff, bool Swap, void *Spec)
 	   CigiSwap4(&TimeStampV3,CDta.l++);
    }
 
+   TimeStampV1 = TimeStampV3 / 10;
+   TimeStampV2 = (float)TimeStampV1;
 
    return(CIGI_SUCCESS);
 
@@ -198,6 +185,8 @@ int CigiIGCtrlV4::SetTimeStamp(const Cigi_uint32 TimeStamp, bool bndchk)
 {
 
    TimeStampV3 = TimeStamp;
+   TimeStampV1 = TimeStampV3 / 10;
+   TimeStampV2 = (float)TimeStampV1;
 
    return(CIGI_SUCCESS);
 

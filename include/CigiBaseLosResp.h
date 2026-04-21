@@ -79,14 +79,17 @@
 #define CIGI_LOS_RESP_PACKET_ID_V3 104
 #define CIGI_LOS_RESP_PACKET_SIZE_V3 16
 
+#define CIGI_LOS_RESP_PACKET_ID_V3_2 104
+#define CIGI_LOS_RESP_PACKET_SIZE_V3_2 16
+
 #define CIGI_LOS_RESP_PACKET_ID_V4 0x0ffd
 #define CIGI_LOS_RESP_PACKET_SIZE_V4 24
 
+#define CIGI_LOS_RESP_PACKET_ID_V4_1 0x0ffd
+#define CIGI_LOS_RESP_PACKET_SIZE_V4_1 24
+
 #define CIGI_LOS_XRESP_PACKET_ID_V3 105
 #define CIGI_LOS_XRESP_PACKET_SIZE_V3 56
-
-#define CIGI_LOS_RESP_PACKET_ID_V3_2 104
-#define CIGI_LOS_RESP_PACKET_SIZE_V3_2 16
 
 #define CIGI_LOS_XRESP_PACKET_ID_V3_2 105
 #define CIGI_LOS_XRESP_PACKET_SIZE_V3_2 56
@@ -94,15 +97,20 @@
 #define CIGI_LOS_XRESP_PACKET_ID_V4 0xffc
 #define CIGI_LOS_XRESP_PACKET_SIZE_V4 64
 
+#define CIGI_LOS_XRESP_PACKET_ID_V4_1 0xffc
+#define CIGI_LOS_XRESP_PACKET_SIZE_V4_1 64
+
 
 class CigiLosRespV1;
 class CigiLosRespV2;
 class CigiLosRespV3;
-class CigiLosXRespV3;
-class CigiLosXRespV4;
 class CigiLosRespV3_2;
+class CigiLosRespV4;
+class CigiLosRespV4_1;
+class CigiLosXRespV3;
 class CigiLosXRespV3_2;
 class CigiLosXRespV4;
+class CigiLosXRespV4_1;
 
 
 class CIGI_SPEC CigiBaseLosResp : public CigiBasePacket
@@ -111,11 +119,13 @@ class CIGI_SPEC CigiBaseLosResp : public CigiBasePacket
 friend class CigiLosRespV1;
 friend class CigiLosRespV2;
 friend class CigiLosRespV3;
-friend class CigiLosRespV4;
-friend class CigiLosXRespV3;
 friend class CigiLosRespV3_2;
+friend class CigiLosRespV4;
+friend class CigiLosRespV4_1;
+friend class CigiLosXRespV3;
 friend class CigiLosXRespV3_2;
 friend class CigiLosXRespV4;
+friend class CigiLosXRespV4_1;
 
 
 public:
@@ -331,66 +341,6 @@ protected:
    //==> Member variables
 
    //=========================================================
-   //! LosID<br>
-   //! The Line Of Sight ID
-   //!
-   Cigi_uint16 LosID;
-
-   //=========================================================
-   //! Valid<br>
-   //! An intersection occurred and the data is valid.
-   //!
-   bool Valid;
-
-   //=========================================================
-   //! EntityIDValid<br>
-   //! The LOS intersected an Entity and a valid Entity ID is
-   //!   provided.
-   //!
-   bool EntityIDValid;
-
-   //=========================================================
-   //! RangeValid<br>
-   //! An intersection occurred and the Range data is valid.
-   //!
-   bool RangeValid;
-
-   //=========================================================
-   //! Visible<br>
-   //! The Destination or End Point is visible from the Source
-   //!   or Start Point.
-   //!
-   bool Visible;
-
-   //=========================================================
-   //! HostFrame<br>
-   //! The least significant nibble of the Host frame number
-   //!  when the los was calculated.
-   //!
-   Cigi_uint8 HostFrame;
-
-   //=========================================================
-   //! IntersectionCoordSys<br>
-   //!  0-Geodetic<br>
-   //!  1-Entity
-   //! What coordinate system the Intersection Point position
-   //!   is presented.
-   //!
-   LOSCoordGrp IntersectionCoordSys;
-
-   //=========================================================
-   //! RespCount<br>
-   //! The number of responses for this request.
-   //!
-   Cigi_uint8 RespCount;
-
-   //=========================================================
-   //! EntityID<br>
-   //! The Entity ID of the entity with which the LOS intersected.
-   //!
-   Cigi_uint16 EntityID;
-
-   //=========================================================
    //! Range<br>
    //! The range from the Source or Start Point to the intersection.
    //!
@@ -413,6 +363,52 @@ protected:
    //! The altitude of the intersection
    //!
    double AltOrZoff;
+
+   //=========================================================
+   //! NormalAz<br>
+   //! The azimuth of the surface normal at the point of intersection.
+   //!
+   float NormalAz;
+
+   //=========================================================
+   //! NormalEl<br>
+   //! The elevation of the surface normal at the point of intersection.
+   //!
+   float NormalEl;
+
+   //=========================================================
+   //! LosID<br>
+   //! The Line Of Sight ID
+   //!
+   Cigi_uint16 LosID;
+
+   //=========================================================
+   //! EntityID<br>
+   //! The Entity ID of the entity with which the LOS intersected.
+   //!
+   Cigi_uint16 EntityID;
+
+   //=========================================================
+   //! HostFrame<br>
+   //! The least significant nibble of the Host frame number
+   //!  when the los was calculated.
+   //!
+   Cigi_uint8 HostFrame;
+
+   //=========================================================
+   //! IntersectionCoordSys<br>
+   //!  0-Geodetic<br>
+   //!  1-Entity
+   //! What coordinate system the Intersection Point position
+   //!   is presented.
+   //!
+   LOSCoordGrp IntersectionCoordSys;
+
+   //=========================================================
+   //! RespCount<br>
+   //! The number of responses for this request.
+   //!
+   Cigi_uint8 RespCount;
 
    //=========================================================
    //! Red<br>
@@ -449,22 +445,42 @@ protected:
    Cigi_uint32 Material;
 
    //=========================================================
-   //! NormalAz<br>
-   //! The azimuth of the surface normal at the point of intersection.
-   //!
-   float NormalAz;
-
-   //=========================================================
-   //! NormalEl<br>
-   //! The elevation of the surface normal at the point of intersection.
-   //!
-   float NormalEl;
-
-   //=========================================================
    //! ValidV1or2<br>
    //! Data is valid for Cigi Version 1 and 2
    //!
    bool ValidV1or2;
+
+   //=========================================================
+   //! Valid<br>
+   //! An intersection occurred and the data is valid.
+   //!
+   bool Valid;
+
+   //=========================================================
+   //! EntityIDValid<br>
+   //! The LOS intersected an Entity and a valid Entity ID is
+   //!   provided.
+   //!
+   bool EntityIDValid;
+
+   //=========================================================
+   //! RangeValid<br>
+   //! An intersection occurred and the Range data is valid.
+   //!
+   bool RangeValid;
+
+   //=========================================================
+   //! Visible<br>
+   //! The Destination or End Point is visible from the Source
+   //!   or Start Point.
+   //!
+   bool Visible;
+
+   //=========================================================
+   //! MaterialValid<br>
+   //! The Material value is valid
+   //!
+   bool MaterialValid; // CIGI 4.1 or later
 
 
 };

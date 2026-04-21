@@ -69,18 +69,13 @@
 // ================================================
 // CigiMaritimeSurfaceRespV4
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-CigiMaritimeSurfaceRespV4::CigiMaritimeSurfaceRespV4()
+CigiMaritimeSurfaceRespV4::CigiMaritimeSurfaceRespV4() : CigiBaseMaritimeSurfaceResp()
 {
 
    PacketID = CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4;
    PacketSize = CIGI_MARITIME_SURFACE_RESP_PACKET_SIZE_V4;
    Version = 4;
    MinorVersion = 0;
-
-   RequestID = 0;
-   SurfaceHeight = 0.0;
-   WaterTemp = 0.0;
-   Clarity = 0.0;
 
 }
 

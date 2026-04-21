@@ -163,6 +163,7 @@ CigiOutgoingMsg::CigiOutgoingMsg()
    pIGCtrlPck[4] = new CigiIGCtrlV3_2;
    pIGCtrlPck[5] = new CigiIGCtrlV3_3;
    pIGCtrlPck[6] = new CigiIGCtrlV4;
+   pIGCtrlPck[7] = new CigiIGCtrlV4_1;
 
    pSOFPck[0] = NULL;
    pSOFPck[1] = new CigiSOFV1;
@@ -170,6 +171,7 @@ CigiOutgoingMsg::CigiOutgoingMsg()
    pSOFPck[3] = new CigiSOFV3;
    pSOFPck[4] = new CigiSOFV3_2;
    pSOFPck[5] = new CigiSOFV4;
+   pSOFPck[6] = new CigiSOFV4_1;
 
    for(int ndx=0;ndx<0xffff;ndx++)
    {
@@ -178,7 +180,7 @@ CigiOutgoingMsg::CigiOutgoingMsg()
    }
 
    CmdVersionChng = false;
-   CmdVersion.SetCigiVersion(4,0);
+   CmdVersion.SetCigiVersion(4,1);
    MostMatureVersionReceived.SetCigiVersion(0,0);
 
    FrameCnt = 0;
@@ -209,11 +211,11 @@ CigiOutgoingMsg::CigiOutgoingMsg()
 CigiOutgoingMsg::~CigiOutgoingMsg()
 {
    int ndx;
-   for(ndx=1;ndx<7;ndx++)
+   for(ndx=1;ndx<sizeof(pIGCtrlPck) / sizeof(pIGCtrlPck[0]);ndx++)
    {
       delete pIGCtrlPck[ndx];
    }
-   for(ndx=1;ndx<6;ndx++)
+   for(ndx=1;ndx< sizeof(pSOFPck) / sizeof(pSOFPck[0]);ndx++)
    {
       delete pSOFPck[ndx];
    }
@@ -400,7 +402,9 @@ void CigiOutgoingMsg::ChangeBufferCigiVersion(void)
 
    if(Session->IsHost())
    {
-      if((OutgoingVersion.GetCombinedCigiVersion() >= 0x0400))
+       if ((OutgoingVersion.GetCombinedCigiVersion() >= 0x0401))
+	   CrntFillBuf->PackIGCtrl = pIGCtrlPck[7];
+       else if((OutgoingVersion.GetCombinedCigiVersion() >= 0x0400))
          CrntFillBuf->PackIGCtrl = pIGCtrlPck[6];
       else if((OutgoingVersion.GetCombinedCigiVersion() >= 0x303))
          CrntFillBuf->PackIGCtrl = pIGCtrlPck[5];
@@ -418,7 +422,9 @@ void CigiOutgoingMsg::ChangeBufferCigiVersion(void)
    else
    {
       CrntFillBuf->PackSOF = pSOFPck[OutgoingVersion.CigiMajorVersion];
-      if((OutgoingVersion.GetCombinedCigiVersion() >= 0x0400))
+      if ((OutgoingVersion.GetCombinedCigiVersion() >= 0x0401))
+	  CrntFillBuf->PackSOF = pSOFPck[6];
+      else if((OutgoingVersion.GetCombinedCigiVersion() >= 0x0400))
          CrntFillBuf->PackSOF = pSOFPck[5];
       else if((OutgoingVersion.GetCombinedCigiVersion() >= 0x302))
          CrntFillBuf->PackSOF = pSOFPck[4];
@@ -1675,12 +1681,43 @@ void CigiOutgoingMsg::SetOutgoingIGV3Tbls(void)
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 void CigiOutgoingMsg::SetOutgoingHostV4Tbls(void)
 {
-   OutgoingHandlerTbl[CIGI_IG_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiIGCtrlV4;
-   VldSnd[CIGI_IG_CTRL_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiEntityPositionCtrlV4;
-   VldSnd[CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiConfClampEntityCtrlV4;
-   VldSnd[CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4] = true;
+    if (OutgoingVersion.CigiMinorVersion >= 1)
+    {
+	OutgoingHandlerTbl[CIGI_IG_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiIGCtrlV4_1;
+	VldSnd[CIGI_IG_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiEntityPositionCtrlV4_1;
+	VldSnd[CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_CELESTIAL_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiCelestialCtrlV4_1;
+	VldSnd[CIGI_CELESTIAL_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_VIEW_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiViewCtrlV4_1;
+	VldSnd[CIGI_VIEW_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiConfClampEntityCtrlV4_1;
+	VldSnd[CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_ENV_RGN_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiEnvRgnCtrlV4_1;
+	VldSnd[CIGI_ENV_RGN_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_EARTH_MODEL_DEF_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiEarthModelDefV4_1;
+	VldSnd[CIGI_EARTH_MODEL_DEF_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_MANUAL_CELESTIAL_CTRL_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiManualCelestialCtrlV4_1;
+	VldSnd[CIGI_MANUAL_CELESTIAL_CTRL_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_CELESTIAL_REQ_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiCelestialReqV4_1;
+	VldSnd[CIGI_CELESTIAL_REQ_PACKET_ID_V4_1] = true;
+    }
+    else {
+	OutgoingHandlerTbl[CIGI_IG_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiIGCtrlV4;
+	VldSnd[CIGI_IG_CTRL_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiEntityPositionCtrlV4;
+	VldSnd[CIGI_ENTITY_POSITION_CTRL_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_CELESTIAL_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiCelestialCtrlV4;
+	VldSnd[CIGI_CELESTIAL_CTRL_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_VIEW_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiViewCtrlV4;
+	VldSnd[CIGI_VIEW_CTRL_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiConfClampEntityCtrlV4;
+	VldSnd[CIGI_CONF_CLAMP_ENTITY_CTRL_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_ENV_RGN_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiEnvRgnCtrlV4;
+	VldSnd[CIGI_ENV_RGN_CTRL_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_EARTH_MODEL_DEF_PACKET_ID_V4] = (CigiBasePacket *) new CigiEarthModelDefV4;
+	VldSnd[CIGI_EARTH_MODEL_DEF_PACKET_ID_V4] = true;
+    }
    OutgoingHandlerTbl[CIGI_COMP_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiCompCtrlV4;
    VldSnd[CIGI_COMP_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_SHORT_COMP_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiShortCompCtrlV4;
@@ -1691,10 +1728,6 @@ void CigiOutgoingMsg::SetOutgoingHostV4Tbls(void)
    VldSnd[CIGI_SHORT_ART_PART_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_VELOCITY_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiVelocityCtrlV4;
    VldSnd[CIGI_VELOCITY_CTRL_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_ENV_RGN_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiEnvRgnCtrlV4;
-   VldSnd[CIGI_ENV_RGN_CTRL_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_CELESTIAL_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiCelestialCtrlV4;
-   VldSnd[CIGI_CELESTIAL_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_ATMOS_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiAtmosCtrlV4;
    VldSnd[CIGI_ATMOS_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_WEATHER_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiWeatherCtrlV4;
@@ -1705,14 +1738,10 @@ void CigiOutgoingMsg::SetOutgoingHostV4Tbls(void)
    VldSnd[CIGI_WAVE_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_TERRESTRIAL_SURFACE_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiTerrestrialSurfaceCtrlV4;
    VldSnd[CIGI_TERRESTRIAL_SURFACE_CTRL_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_VIEW_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiViewCtrlV4;
-   VldSnd[CIGI_VIEW_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_SENSOR_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiSensorCtrlV4;
    VldSnd[CIGI_SENSOR_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_MOTION_TRACK_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiMotionTrackCtrlV4;
    VldSnd[CIGI_MOTION_TRACK_CTRL_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_EARTH_MODEL_DEF_PACKET_ID_V4] = (CigiBasePacket *) new CigiEarthModelDefV4;
-   VldSnd[CIGI_EARTH_MODEL_DEF_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_ACCELERATION_CTRL_PACKET_ID_V4] = (CigiBasePacket *) new CigiAccelerationCtrlV4;
    VldSnd[CIGI_ACCELERATION_CTRL_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_VIEW_DEF_PACKET_ID_V4] = (CigiBasePacket *) new CigiViewDefV4;
@@ -1760,14 +1789,30 @@ void CigiOutgoingMsg::SetOutgoingHostV4Tbls(void)
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 void CigiOutgoingMsg::SetOutgoingIGV4Tbls(void)
 {
-   OutgoingHandlerTbl[CIGI_SOF_PACKET_ID_V4] = (CigiBasePacket *) new CigiSOFV4;
-   VldSnd[CIGI_SOF_PACKET_ID_V4] = true;
+    if (OutgoingVersion.CigiMinorVersion >= 1)
+    {
+	OutgoingHandlerTbl[CIGI_SOF_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiSOFV4_1;
+	VldSnd[CIGI_SOF_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_LOS_RESP_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiLosRespV4_1;
+	VldSnd[CIGI_LOS_RESP_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiMaritimeSurfaceRespV4_1;
+	VldSnd[CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4_1] = true;
+	OutgoingHandlerTbl[CIGI_CELESTIAL_RESP_PACKET_ID_V4_1] = (CigiBasePacket *) new CigiCelestialRespV4_1;
+	VldSnd[CIGI_CELESTIAL_RESP_PACKET_ID_V4_1] = true;
+    }
+    else
+    {
+	OutgoingHandlerTbl[CIGI_SOF_PACKET_ID_V4] = (CigiBasePacket *) new CigiSOFV4;
+	VldSnd[CIGI_SOF_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_LOS_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiLosRespV4;
+	VldSnd[CIGI_LOS_RESP_PACKET_ID_V4] = true;
+	OutgoingHandlerTbl[CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiMaritimeSurfaceRespV4;
+	VldSnd[CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4] = true;
+    }
    OutgoingHandlerTbl[CIGI_HAT_HOT_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiHatHotRespV4;
    VldSnd[CIGI_HAT_HOT_RESP_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_HAT_HOT_XRESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiHatHotXRespV4;
    VldSnd[CIGI_HAT_HOT_XRESP_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_LOS_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiLosRespV4;
-   VldSnd[CIGI_LOS_RESP_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_LOS_XRESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiLosXRespV4;
    VldSnd[CIGI_LOS_XRESP_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_SENSOR_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiSensorRespV4;
@@ -1780,8 +1825,6 @@ void CigiOutgoingMsg::SetOutgoingIGV4Tbls(void)
    VldSnd[CIGI_WEATHER_COND_RESP_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_AEROSOL_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiAerosolRespV4;
    VldSnd[CIGI_AEROSOL_RESP_PACKET_ID_V4] = true;
-   OutgoingHandlerTbl[CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiMaritimeSurfaceRespV4;
-   VldSnd[CIGI_MARITIME_SURFACE_RESP_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_TERRESTRIAL_SURFACE_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiTerrestrialSurfaceRespV4;
    VldSnd[CIGI_TERRESTRIAL_SURFACE_RESP_PACKET_ID_V4] = true;
    OutgoingHandlerTbl[CIGI_COLL_DET_SEG_RESP_PACKET_ID_V4] = (CigiBasePacket *) new CigiCollDetSegRespV4;

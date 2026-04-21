@@ -76,11 +76,15 @@
 #define CIGI_VIEW_CTRL_PACKET_ID_V4 0x0f
 #define CIGI_VIEW_CTRL_PACKET_SIZE_V4 40
 
+#define CIGI_VIEW_CTRL_PACKET_ID_V4_1 0x0f
+#define CIGI_VIEW_CTRL_PACKET_SIZE_V4_1 40
+
 
 class CigiViewCtrlV1;
 class CigiViewCtrlV2;
 class CigiViewCtrlV3;
 class CigiViewCtrlV4;
+class CigiViewCtrlV4_1;
 
 
 class CIGI_SPEC CigiBaseViewCtrl : public CigiBasePacket
@@ -90,6 +94,7 @@ friend class CigiViewCtrlV1;
 friend class CigiViewCtrlV2;
 friend class CigiViewCtrlV3;
 friend class CigiViewCtrlV4;
+friend class CigiViewCtrlV4_1;
 
 public:
 
@@ -394,6 +399,11 @@ protected:
    float Yaw;
 
 
+   //=========================================================
+   //! AttachPointID<br>
+   //! The ID of the attachment point.
+   //!
+   Cigi_uint16	AttachPointID;
 };
 
 #endif // #if !defined(_CIGI_BASE_VIEW_CTRL_INCLUDED_)
