@@ -312,6 +312,9 @@ public:
    bool GetValidV1or2(void) const { return(ValidV1or2); }
 
 
+   //gets resp count
+   int GetRespCount(void) const { return(RespCount); }
+
 
 protected:
 

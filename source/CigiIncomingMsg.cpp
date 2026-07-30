@@ -100,6 +100,7 @@
 #include "CigiDefaultPacket.h"
 #include "CigiSession.h"
 
+using namespace std;
 
 // ====================================================================
 // Construction/Destruction
@@ -464,7 +465,7 @@ void CigiIncomingMsg::ProcessPacket(int PcktId, CigiBasePacket *Pckt)
    // Process all Event handlers for this packet
    if(!EventList[PcktId].empty())
    {
-      list<CigiBaseEventProcessor *>::iterator iEvent =
+      std::list<CigiBaseEventProcessor *>::iterator iEvent =
          EventList[PcktId].begin();
       while(iEvent != EventList[PcktId].end())
       {
@@ -478,7 +479,7 @@ void CigiIncomingMsg::ProcessPacket(int PcktId, CigiBasePacket *Pckt)
    // Process all Callbacks for this packet
    if(!CallBackList[PcktId].empty())
    {
-      list<CigiCBProcessor>::iterator iCB =
+     std::list<CigiCBProcessor>::iterator iCB =
          CallBackList[PcktId].begin();
       while(iCB != CallBackList[PcktId].end())
       {
@@ -506,7 +507,7 @@ bool CigiIncomingMsg::SignalJump(const Cigi_uint8 PacketID, CigiBasePacket *Pack
 
    bool Processed = false;
 
-   list<CigiBaseSignalProcessing *>::iterator iSig;
+   std::list<CigiBaseSignalProcessing *>::iterator iSig;
 
    for(iSig=SignalList.begin();iSig!=SignalList.end();iSig++)
    {

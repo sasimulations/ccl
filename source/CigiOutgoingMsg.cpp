@@ -393,7 +393,7 @@ void CigiOutgoingMsg::ChangeBufferCigiVersion(void)
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiOutgoingMsg & CigiOutgoingMsg::operator <<(CigiBaseIGCtrl &refPacket)
 {
-   CigiMessageBuffer *HostMsgBuf = NULL;
+  CigiMessageBuffer *HostMsgBuf = NULL;
 
    if(Buffers.empty())
    {
@@ -442,7 +442,7 @@ CigiOutgoingMsg & CigiOutgoingMsg::operator <<(CigiBaseIGCtrl &refPacket)
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiOutgoingMsg & CigiOutgoingMsg::operator <<(CigiBaseSOF &refPacket)
 {
-   CigiMessageBuffer *IgMsgBuf = NULL;
+  CigiMessageBuffer *IgMsgBuf = NULL;
 
    if(Buffers.empty())
    {
@@ -510,7 +510,7 @@ CigiOutgoingMsg & CigiOutgoingMsg::operator <<(CigiBaseEntityCtrl &refPacket)
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 CigiOutgoingMsg & CigiOutgoingMsg::operator <<(CigiBaseEnvCtrl &refPacket)
 {
-   // Store data
+  // Store data
    refPacket.FillHold(&EnvHoldObj);
 
    Cigi_uint8 FillVer = refPacket.GetVersion();
@@ -1059,6 +1059,11 @@ int CigiOutgoingMsg::GetMsgLength()
    {
       if((CrntMsgBuf->Active) && (CrntMsgBuf->Locked))
          length = CrntMsgBuf->BufferFillCnt;
+   }
+   else
+   {
+     for (auto it = Buffers.begin(); it != Buffers.end(); ++it)
+       length += (*it)->BufferFillCnt;
    }
 
    return(length);

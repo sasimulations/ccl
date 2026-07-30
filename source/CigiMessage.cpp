@@ -78,7 +78,7 @@ CigiMessage::~CigiMessage()
 
    if(Buffers.size() > 0)
    {
-      list<CigiMessageBuffer *>::iterator iBuf;
+      std::list<CigiMessageBuffer *>::iterator iBuf;
       for(iBuf=Buffers.begin();iBuf!=Buffers.end();iBuf++)
       {
          delete (*iBuf);
@@ -88,7 +88,7 @@ CigiMessage::~CigiMessage()
 
    if(AvailBuff.size() > 0)
    {
-      list<CigiMessageBuffer *>::iterator iBuf;
+      std::list<CigiMessageBuffer *>::iterator iBuf;
       for(iBuf=AvailBuff.begin();iBuf!=AvailBuff.end();iBuf++)
       {
          delete (*iBuf);

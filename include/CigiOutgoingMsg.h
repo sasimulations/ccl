@@ -345,6 +345,16 @@ public:
 
 
    //==> Buffer Packing Managers
+      //=========================================================
+   //! Return the number of active buffers
+   //!
+   //! \return This returns the number of active buffers 
+   //!
+   size_t BufferCount(void)
+   {
+     return Buffers.size();
+   }
+
 
    //=========================================================
    //! Alerts the system that a message is being started.  
