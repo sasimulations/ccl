@@ -566,19 +566,19 @@ protected:
    //! EventList<br>
    //! The table of Event lists.
    //!
-   list<CigiBaseEventProcessor *>EventList[TotalPacketTypes];
+   std::list<CigiBaseEventProcessor *>EventList[TotalPacketTypes];
 
    //=========================================================
    //! CallBackList<br>
    //! The table of Callback lists.
    //!
-   list<CigiCBProcessor>CallBackList[TotalPacketTypes];
+   std::list<CigiCBProcessor>CallBackList[TotalPacketTypes];
 
    //=========================================================
    //! SignalList<br>
    //! The beginning of the Signal list.
    //!
-   list<CigiBaseSignalProcessing *>SignalList;
+   std::list<CigiBaseSignalProcessing *>SignalList;
 
    //=========================================================
    //! Swap<br>

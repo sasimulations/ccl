@@ -156,8 +156,8 @@ int CigiCelestialCtrlV4::Pack(CigiBasePacket * Base, Cigi_uint8 * Buff, void *Sp
    *CDta.f++ = Data->Seconds;
 
    // Determine date
-   Cigi_uint32 date = ((Cigi_uint32)Data->Month * 1000000) +
-                        ((Cigi_uint32)Data->Day   *   10000) + (Cigi_uint32)Data->Year;
+   Cigi_uint32 date = ((Cigi_uint32)Data->Month * 100) +
+                        ((Cigi_uint32)Data->Day) + ((Cigi_uint32)Data->Year * 10000);
    *CDta.l++ = date;
 
    *CDta.f++ = Data->StarInt;

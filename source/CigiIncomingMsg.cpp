@@ -83,6 +83,7 @@
 #include "CigiSession.h"
 #include "CigiSwapping.h"
 
+using namespace std;
 
 // ====================================================================
 // Construction/Destruction

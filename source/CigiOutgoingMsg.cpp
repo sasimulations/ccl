@@ -1151,6 +1151,11 @@ int CigiOutgoingMsg::GetMsgLength()
       if((CrntMsgBuf->Active) && (CrntMsgBuf->Locked))
          length = CrntMsgBuf->BufferFillCnt;
    }
+   else
+   {
+     for (auto &buf : Buffers)
+       length += buf->BufferFillCnt;
+   }
 
    return(length);
 }

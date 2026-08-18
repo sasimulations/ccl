@@ -66,8 +66,6 @@
 
 class CigiSession;
 
-using namespace std;
-
 //=========================================================
 //! The base class for Messages
 //!
@@ -186,12 +184,12 @@ protected:
    //=========================================================
    //! Active buffers
    //!
-   list<CigiMessageBuffer *> Buffers;
+   std::list<CigiMessageBuffer *> Buffers;
 
    //=========================================================
    //! Available buffers
    //!
-   list<CigiMessageBuffer *> AvailBuff;
+   std::list<CigiMessageBuffer *> AvailBuff;
 
    //=========================================================
    //! Current buffer

@@ -299,7 +299,7 @@ CigiBaseCircleSymbolData * CigiSymbolCircleDefV4::AddCircle(void)
    CigiCircleSymbolDataV4 *NewCircle = NULL;
    int Cnt = (int)Circles.size();
 
-   if(Cnt < 10)
+   if(Cnt < 9)
    {
       NewCircle = new CigiCircleSymbolDataV4;
       Circles.push_back((CigiBaseCircleSymbolData *)NewCircle);
