@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Win32" />
+    <Platform Name="x64" />
+  </Configurations>
+
+  <Project Path="ccl_lib.vcxproj" Id="c0b88fb5-7583-4546-a898-70821569969a" />
+</Solution>
+
+
